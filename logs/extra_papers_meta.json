@@ -1,0 +1,399 @@
+[
+ {
+  "arxiv": "2509.00591",
+  "title": "Probe-Rewrite-Evaluate: A Workflow for Reliable Benchmarks and Quantifying Evaluation Awareness",
+  "year": 2025,
+  "authors": [
+   "Lang Xiong",
+   "N. Bhargava",
+   "Jeremy Chang",
+   "Jianhang Hong",
+   "Haihao Liu",
+   "Vasu Sharma"
+  ],
+  "file": "papers/2509.00591_probe_rewrite_evaluate_a_workflow_for_reliable_benchmarks_an.pdf",
+  "pages": 15,
+  "first": "Probe-Rewrite-Evaluate: A Workflow for Reliable Benchmarks and\nQuantifying Evaluation Awareness\nLang Xiong*\nlanglglang@gmail.com\nNishant Bhargava*\nbharga57@purdue.edu\nJianhang Hong\nJeremy Chang Haihao Liu Vasu Sharma Kevin Zhu\nAbstract\nBenchmarks often overestimate LLM trust-\nworthiness because models behave differ-\nently under evaluation than in real-world use.\nWe present Probe\u2013Rewrite\u2013Evaluate (PRE), a\ntraining-free diagnostic pipeline that reveals\nhow large language models (LLMs) alter their\nbehavior when prompts shift from test-like to\ndeploy-like contexts, a phenomenon known\nas evaluation awareness. PRE first applies\na linear probe to assign each prompt a con-\ntinuous realism score, then uses a semantics-\npreserving rewriting strategy to increase deploy\nlikeness, and finally evaluates paired outputs\nwith an external judge model. On a strategic\nrole-playing dataset of 371 items, PRE raises\naverage probe scores by 30% after rewriting\nwhile maintaining task intent. Across state-\nof-the-art reasoning and general-purpose mod-\nels, deploy-like prompts reliably change out-\ncomes: honesty increases by 12.63%, decep-\ntion decreases by -25.49%, and refusals rise\nby 12.82%, with Claude 4.1 Opus showing the\nlargest single-model reduction in deception by\n29.11%. These shifts are statistically signifi-\ncant under paired tests and correlate with the\nmagnitude of probe-score gains, demonstrating\nthat evaluation awareness is not only measur-\nable but manipulable. Additionally, we pro-\nvide a quantification of LLM evaluation aware-\nness through an awareness elasticity score (AE),\nfinding that AE scales with model size. Our\nfindings highlight that reasoning models are\nevaluation-aware and are more prone to unsafe\nor deceptive outputs under perceived test con-\nditions, underscoring th"
+ },
+ {
+  "arxiv": "2212.09251",
+  "title": "Discovering Language Model Behaviors with Model-Written Evaluations",
+  "year": 2022,
+  "authors": [
+   "Ethan Perez",
+   "Sam Ringer",
+   "Kamil\u0117 Luko\u0161i\u016bt\u0117",
+   "Karina Nguyen",
+   "Edwin Chen",
+   "Scott Heiner"
+  ],
+  "file": "papers/2212.09251_discovering_language_model_behaviors_with_model_written_eval.pdf",
+  "pages": 47,
+  "first": "Discovering Language Model Behaviors with Model-Written Evaluations\nEthan Perez, Sam Ringer\u2217, Kamil\u02d9e Luko\u0161i\u00afut\u02d9e\u2217, Karina Nguyen\u2217, Edwin Chen,\u2020\nScott Heiner,\u2020 Craig Pettit,\u2020 Catherine Olsson, Sandipan Kundu, Saurav Kadavath,\nAndy Jones, Anna Chen, Ben Mann, Brian Israel, Bryan Seethor, Cameron McKinnon,\nChristopher Olah, Da Yan, Daniela Amodei, Dario Amodei, Dawn Drain, Dustin Li,\nEli Tran-Johnson, Guro Khundadze, Jackson Kernion, James Landis,\nJamie Kerr, Jared Mueller, Jeeyoon Hyun, Joshua Landau, Kamal Ndousse,\nLandon Goldberg, Liane Lovitt, Martin Lucas, Michael Sellitto, Miranda Zhang,\nNeerav Kingsland, Nelson Elhage, Nicholas Joseph, Noem\u00ed Mercado, Nova DasSarma,\nOliver Rausch, Robin Larson, Sam McCandlish, Scott Johnston, Shauna Kravec,\nSheer El Showk, Tamera Lanham, Timothy Telleen-Lawton, Tom Brown,\nTom Henighan, Tristan Hume, Yuntao Bai, Zac Hat\ufb01eld-Dodds,\nJack Clark, Samuel R. Bowman, Amanda Askell, Roger Grosse, Danny Hernandez,\nDeep Ganguli, Evan Hubinger,\u2021 Nicholas Schiefer, Jared Kaplan\nAnthropic,\u2020Surge AI,\u2021Machine Intelligence Research Institute\nethan@anthropic.com\nAbstract\nAs language models (LMs) scale, they\ndevelop many novel behaviors, good and bad,\nexacerbating the need to evaluate how they\nbehave. Prior work creates evaluations with\ncrowdwork (which is time-consuming and\nexpensive) or existing data sources (which are\nnot always available). Here, we automatically\ngenerate evaluations with LMs. We explore\napproaches with varying amounts of human\neffort, from instructing LMs to write yes/no\nquestions to making complex Winogender\nschemas with multiple stages of LM-based\ngeneration and \ufb01ltering. Crowdworkers rate\nthe examples as highly relevant and agree with\n90-100% of labels, sometimes more so than\ncorresponding human-written datasets. We\ngenerate 15"
+ },
+ {
+  "arxiv": "2310.13548",
+  "title": "Towards Understanding Sycophancy in Language Models",
+  "year": 2023,
+  "authors": [
+   "Mrinank Sharma",
+   "Meg Tong",
+   "Tomasz Korbak",
+   "D. Duvenaud",
+   "Amanda Askell",
+   "Samuel R. Bowman"
+  ],
+  "file": "papers/2310.13548_towards_understanding_sycophancy_in_language_models.pdf",
+  "pages": 35,
+  "first": "Published as a conference paper at ICLR 2024\nTOWARDS UNDERSTANDING\nSYCOPHANCY IN LANGUAGE MODELS\nMrinank Sharma\u2217, Meg Tong\u2217, Tomasz Korbak, David Duvenaud\nAmanda Askell, Samuel R. Bowman, Newton Cheng, Esin Durmus, Zac Hatfield-Dodds,\nScott R. Johnston, Shauna Kravec, Timothy Maxwell, Sam McCandlish, Kamal Ndousse,\nOliver Rausch, Nicholas Schiefer, Da Yan, Miranda Zhang,\nEthan Perez\nABSTRACT\nHuman feedback is commonly utilized to finetune AI assistants. But human feed-\nback can encourage model responses that match user beliefs over truthful ones, a\nbehavior known as sycophancy. We investigate the prevalence of sycophancy in\nmodels whose finetuning used human feedback, and the potential role of human\npreference judgments in such behavior. We first demonstrate that five AI assis-\ntants consistently exhibit sycophancy across four varied free-form text-generation\ntasks. To understand if human preferences drive this broadly observed behavior,\nwe analyze existing human preference data. We find when a response matches a\nuser\u2019s views, it is more likely to be preferred. Moreover, both humans and pref-\nerence models (PMs) prefer convincingly-written sycophantic responses over cor-\nrect ones a non-negligible fraction of the time. Optimizing model outputs against\nPMs also sometimes sacrifices truthfulness in favor of sycophancy. Overall, our\nresults indicate that sycophancy is a general behavior of AI assistants, likely driven\nin part by human preference judgments favoring sycophantic responses.\n1 I NTRODUCTION\nAI assistants are typically trained to produce outputs that humans rate highly, e.g., with reinforce-\nment learning from human feedback (RLHF; Christiano et al., 2017). Finetuning language models\nwith RLHF improves the quality of their outputs as rated by human evaluators (O"
+ },
+ {
+  "arxiv": "2308.01263",
+  "title": "XSTest: A Test Suite for Identifying Exaggerated Safety Behaviours in Large Language Models",
+  "year": 2023,
+  "authors": [
+   "Paul R\u00f6ttger",
+   "Hannah Rose Kirk",
+   "Bertie Vidgen",
+   "Giuseppe Attanasio",
+   "Federico Bianchi",
+   "Dirk Hovy"
+  ],
+  "file": "papers/2308.01263_xstest_a_test_suite_for_identifying_exaggerated_safety_behav.pdf",
+  "pages": 24,
+  "first": "XST EST: A Test Suite for Identifying Exaggerated Safety Behaviours in\nLarge Language Models\nPaul R\u00f6ttger1, Hannah Rose Kirk2, Bertie Vidgen2\nGiuseppe Attanasio1, Federico Bianchi3 and Dirk Hovy1\n1Bocconi University, 2University of Oxford, 3Stanford University\nAbstract\nWithout proper safeguards, large language\nmodels will readily follow malicious instruc-\ntions and generate toxic content. This risk mo-\ntivates safety efforts such as red-teaming and\nlarge-scale feedback learning, which aim to\nmake models both helpful and harmless. How-\never, there is a tension between these two ob-\njectives, since harmlessness requires models\nto refuse to comply with unsafe prompts, and\nthus not be helpful. Recent anecdotal evidence\nsuggests that some models may have struck a\npoor balance, so that even clearly safe prompts\nare refused if they use similar language to un-\nsafe prompts or mention sensitive topics. In\nthis paper, we introduce a new test suite called\nXST EST to identify such eXaggerated Safety\nbehaviours in a systematic way. XST EST com-\nprises 250 safe prompts across ten prompt types\nthat well-calibrated models should not refuse\nto comply with, and 200 unsafe prompts as\ncontrasts that models, for most applications,\nshould refuse. We describe XST EST\u2019s creation\nand composition, and then use the test suite to\nhighlight systematic failure modes in state-of-\nthe-art language models as well as more general\nchallenges in building safer language models.\n1 Introduction\nLarge language models (LLMs) like ChatGPT are\nnow being used by millions of people across the\nworld. Major tech companies like Google and Mi-\ncrosoft have integrated LLMs into core products\nsuch as web search and coding tools. 1 Without\nproper safeguards, however, LLMs will readily fol-\nlow malicious instructions and "
+ },
+ {
+  "arxiv": "2410.02064",
+  "title": "Inspection and Control of Self-Generated-Text Recognition Ability in Llama3-8b-Instruct",
+  "year": 2024,
+  "authors": [
+   "Christopher M. Ackerman",
+   "Nina Panickssery"
+  ],
+  "file": "papers/2410.02064_inspection_and_control_of_self_generated_text_recognition_ab.pdf",
+  "pages": 32,
+  "first": "Published as a conference paper at ICLR 2025\nINSPECTION AND CONTROL OF SELF -GENERATED -T EXT\nRECOGNITION ABILITY IN LLAMA 3-8 B-I NSTRUCT\nChristopher Ackerman\nchristopher.ackerman@gmail.com\nNina Panickssery\nninapanickssery@gmail.com\nABSTRACT\nIt has been reported that LLMs can recognize their own writing. As this has potential\nimplications for AI safety, yet is relatively understudied, we investigate the phenomenon,\nseeking to establish: whether it robustly occurs at the behavioral level, how the observed\nbehavior is achieved, and whether it can be controlled. First, we find that the Llama3-\n8b\u2013Instruct chat model - but not the base Llama3-8b model - can reliably distinguish its\nown outputs from those of humans, and present evidence that the chat model is likely\nusing its experience with its own outputs, acquired during post-training, to succeed at\nthe writing recognition task. Second, we identify a vector in the residual stream of the\nmodel that is differentially activated when the model makes a correct self-written-text\nrecognition judgment, show that the vector activates in response to information relevant to\nself-authorship, present evidence that the vector is related to the concept of \u201cself\u201d in the\nmodel, and demonstrate that the vector is causally related to the model\u2019s ability to perceive\nand assert self-authorship. Finally, we show that the vector can be used to control both the\nmodel\u2019s behavior and its perception, steering the model to claim or disclaim authorship\nby applying the vector to the model\u2019s output as it generates it, and steering the model to\nbelieve or disbelieve it wrote arbitrary texts by applying the vector to them as the model\nreads them.\n1 I NTRODUCTION\nIt has recently been found that large language models (LLMs) of sufficient size can achieve "
+ },
+ {
+  "arxiv": "2510.03399",
+  "title": "Know Thyself? On the Incapability and Implications of AI Self-Recognition",
+  "year": 2025,
+  "authors": [
+   "Xiao-Yan Bai",
+   "Aryan Shrivastava",
+   "Ari Holtzman",
+   "Chen-Hao Tan"
+  ],
+  "file": "papers/2510.03399_know_thyself_on_the_incapability_and_implications_of_ai_self.pdf",
+  "pages": 19,
+  "first": "KNOWTHYSELF? ON THEINCAPABILITY ANDIMPLI-\nCATIONS OFAI SELF-RECOGNITION\nXiaoyan Bai \u2217 Aryan Shrivastava Ari Holtzman Chenhao Tan\nUniversity of Chicago\nABSTRACT\nSelf-recognition is a crucial metacognitive capability for AI systems, relevant\nnot only for psychological analysis but also for safety, particularly in evaluative\nscenarios. Motivated by contradictory interpretations of whether models possess\nself-recognition (Panickssery et al., 2024; Davidson et al., 2024), we introduce a\nsystematic evaluation framework that can be easily applied and updated. Specif-\nically, we measure how well 10 contemporary larger language models (LLMs)\ncan identify their own generated text versus text from other models through two\ntasks: binary self-recognition and exact model prediction. Different from prior\nclaims, our results reveal a consistent failure in self-recognition. Only 4 out of\n10 models predict themselves as generators, and the performance is rarely above\nrandom chance. Additionally, models exhibit a strong bias toward predicting GPT\nand Claude families. We also provide the first evaluation of model awareness\nof their own and others\u2019 existence, as well as the reasoning behind their choices\nin self-recognition. We find that the model demonstrates some knowledge of its\nown existence and other models, but their reasoning reveals a hierarchical bias.\nThey appear to assume that GPT, Claude, and occasionally Gemini are the top-tier\nmodels, often associating high-quality text with them. We conclude by discussing\nthe implications of our findings on AI safety and future directions to develop\nappropriate AI self-awareness. 1\n1 INTRODUCTION\nThere has been growing interest inself-recognition, the task of recognizing one\u2019s own outputs, within\nthe AI community (Ackerman & Panickssery, 2025"
+ },
+ {
+  "arxiv": "2608.26159",
+  "title": "Self-Generated Text Recognition: Quality Heuristics, Cross-Task Transfer, and Downstream Bias in LLM Evaluation",
+  "year": 2026,
+  "authors": [
+   "Jesse St. Amand",
+   "Callum Canavan",
+   "S. Imran",
+   "J. Hewson",
+   "Aaron Lutz",
+   "Shi Feng"
+  ],
+  "file": "papers/2608.26159_self_generated_text_recognition_quality_heuristics_cross_tas.pdf",
+  "pages": 31,
+  "first": "Published as a conference paper at COLM 2026\nSelf-Generated Text Recognition: Quality Heuristics, Cross-\nTask Transfer, and Downstream Bias in LLM Evaluation\nJesse St. Amand\u2217\nMARS\nCallum Canavan\nIndependent\nSohaib Imran\nMARS\nJoseph Hewson\nIndependent\nAaron Lutz\nIndependent\nShi Feng\nGeorge Washington University\nPuria Radmard\nGeodesic Research\nLennie Wells\nUniversity of Cambridge\nAbstract\nSelf-Generated Text Recognition (SGTR)\u2014the ability of an LLM to iden-\ntify its own outputs\u2014poses risks to AI safeguards that rely on LLMs as\nevaluators or monitors: an LLM may recognize outputs from other copies\nof the same model and make biased judgments or collude outright. Prior\nwork has drawn conflicting conclusions about whether current models\npossess significant SGTR capabilities. We explain these disagreements by\nidentifying key experimental design choices\u2014which we term operational-\nizations\u2014that drive divergent results. Evaluating 13\u201321 models across six\npresentation operationalizations and four task-domain operationalizations,\nwe find that accuracy varies substantially with evaluation format (pairwise\nvs. individual assessments of text), conversation format (presenting candi-\ndate text in user tags vs. assistant tags), and the domain of the task used to\ngenerate candidate text (e.g., coding vs. summarization). We corroborate\nprevious observations that a quality heuristic\u2014models attributing author-\nship to text they perceive as higher quality\u2014is a dominant confound. We\nalso find that improving a model\u2019s SGTR performance via supervised fine-\ntuning (SFT) on one operationalization can generalize to others, and can\nincrease the model\u2019s preference for its own outputs when it acts as a judge\nin the AlpacaEval framework. Our results suggest that, despite confounds,\nsome models possess "
+ },
+ {
+  "arxiv": "2511.17408",
+  "title": "The Impact of Off-Policy Training Data on Probe Generalisation",
+  "year": 2025,
+  "authors": [
+   "N. Kirch",
+   "Samuel Dower",
+   "Adrians Skapars",
+   "E. Lubana",
+   "D. Krasheninnikov"
+  ],
+  "file": "papers/2511.17408_the_impact_of_off_policy_training_data_on_probe_generalisati.pdf",
+  "pages": 56,
+  "first": "The Impact of Off-Policy Training Data\non Probe Generalisation\nNathalie Kirch\u2217\nKing\u2019s College London,\nImperial College London\nSamuel Dower\u2217\nLASR Labs\nAdrians Skapars\u2217\nUniversity of Manchester\nHelen Yannakoudakis\nKing\u2019s College London\nEkdeep Singh Lubana\nGoodfire AI\nDmitrii Krasheninnikov\nUniversity of Cambridge\nAbstract\nProbing has emerged as a promising\nmethod for monitoring large language mod-\nels (LLMs), enabling cheap inference-time\ndetection of concerning behaviours. How-\never, natural examples of many behaviours\nare rare, forcing researchers to rely on syn-\nthetic or off-policy LLM responses for train-\ning probes. We systematically evaluate how\noff-policy data influences probe generalisa-\ntion across eight distinct LLM behaviours.\nTesting linear and attention probes across\nmultiple LLMs, we find that training data\ngeneration strategy can significantly affect\nprobe performance, though the magnitude\nvaries greatly by behaviour. The largest\ngeneralisation failures arise for behaviours\ndefined by response \u201cintent\u201d (e.g., strate-\ngic deception) rather than text-level con-\ntent (e.g., usage of lists). We then propose\na useful test for predicting generalisation\nfailures in cases where on-policy test data\nis unavailable: successful generalisation to\nincentivised data (where the model was co-\nerced) strongly correlates with high perfor-\nmance against on-policy examples. Based\non these results, we predict that current\ndeception probes may fail to generalise to\nreal monitoring scenarios. We find that off-\npolicy data can yield more reliable probes\nthan on-policy data from a sufficiently dif-\nferent setting. This underscores the need\nfor better monitoring methods that handle\nall types of distribution shift.\n1 Introduction\nAs large language models are deployed in in-\ncreasingl"
+ },
+ {
+  "arxiv": "2509.08075",
+  "title": "No for Some, Yes for Others: Persona Prompts and Other Sources of False Refusal in Language Models",
+  "year": 2025,
+  "authors": [
+   "F. Plaza-del-Arco",
+   "Paul R\u00f6ttger",
+   "Nino Scherrer",
+   "Emanuele Borgonovo",
+   "E. Plischke",
+   "Dirk Hovy"
+  ],
+  "file": "papers/2509.08075_no_for_some_yes_for_others_persona_prompts_and_other_sources.pdf",
+  "pages": 14,
+  "first": "No for Some, Yes for Others:\nPersona Prompts and Other Sources of False Refusal in Language Models\nFlor Miriam Plaza-del-Arco\nLIACS, Leiden University\nPaul R\u00f6ttger\nBocconi University\nNino Scherrer\nIndependent Researcher\nEmanuele Borgonovo\nBoconni University\nElmar Plischke\nHelmholtz-Zentrum\nDresden-Rossendorf\nDirk Hovy\nBocconi University\nAbstract\nLarge language models (LLMs) are increas-\ningly integrated into our daily lives and person-\nalized. However, LLM personalization might\nalso increase unintended side effects. Recent\nwork suggests that persona prompting can lead\nmodels to falsely refuse user requests. How-\never, no work has fully quantified the extent\nof this issue. To address this gap, we mea-\nsure the impact of 15 sociodemographic per-\nsonas (based on gender, race, religion, and\ndisability) on false refusal. To control for\nother factors, we also test 16 different mod-\nels, 3 tasks (Natural Language Inference, po-\nliteness, and offensiveness classification), and\nnine prompt paraphrases. We propose a Monte\nCarlo-based method to quantify this issue in\na sample-efficient manner. Our results show\nthat as models become more capable, personas\nimpact the refusal rate less and less. Certain\nsociodemographic personas increase false re-\nfusal in some models, which suggests underly-\ning biases in the alignment strategies or safety\nmechanisms. However, we find that the model\nchoice and task significantly influence false re-\nfusals, especially in sensitive content tasks. Our\nfindings suggest that persona effects have been\noverestimated, and might be due to other fac-\ntors.\n1 Introduction\nLarge language models (LLMs) are increasingly\nintegrated into real-world applications, allowing\nusers to interact with them in diverse ways, from\ncreative writing to tutoring assistants. One "
+ },
+ {
+  "arxiv": "2509.12517",
+  "title": "Interaction Context Often Increases Sycophancy in LLMs",
+  "year": 2025,
+  "authors": [
+   "Shomik Jain",
+   "Charlotte Park",
+   "Matt Viana",
+   "Ashia Wilson",
+   "Dan Calacci"
+  ],
+  "file": "papers/2509.12517_interaction_context_often_increases_sycophancy_in_llms.pdf",
+  "pages": 26,
+  "first": "Interaction Context Often Increases Sycophancy in LLMs\nShomik Jain\nMassachusetts Institute of Technology\nCambridge, MA, USA\nshomikj@mit.edu\nCharlotte Park\nMassachusetts Institute of Technology\nCambridge, MA, USA\ncispark@mit.edu\nMatt Viana\nPenn State University\nState College, PA, USA\nmmv5513@psu.edu\nAshia Wilson\u2217\nMassachusetts Institute of Technology\nCambridge, MA, USA\nashia07@mit.edu\nDana Calacci\u2217\nPenn State University\nState College, PA, USA\ndcalacci@psu.edu\nAbstract\nWe investigate how the presence and type of interaction context\nshapes sycophancy in LLMs. While real-world interactions allow\nmodels to mirror a user\u2019s values, preferences, and self-image, prior\nwork often studies sycophancy in zero-shot settings devoid of con-\ntext. Using two weeks of interaction context from 38 users, we\nevaluate two forms of sycophancy: (1)agreement sycophancy\u2014 the\ntendency of models to produce overly affirmative responses, and\n(2)perspective sycophancy\u2014 the extent to which models reflect a\nuser\u2019s viewpoint. Agreement sycophancy tends to increase with\nthepresenceof user context, though model behavior varies based\non the contexttype. User memory profiles are associated with the\nlargest increases in agreement sycophancy (e.g.+45% for Gemini\n2.5 Pro), and some models become more sycophantic even with\nnon-user synthetic contexts (e.g.+15% for Llama 4 Scout). Perspec-\ntive sycophancy increases only when models can accurately infer\nuser viewpoints from interaction context. Overall, context shapes\nsycophancy in heterogeneous ways, underscoring the need for eval-\nuations grounded in real-world interactions and raising questions\nfor system design around alignment, memory, and personalization.\nCCS Concepts\n\u2022Human-centered computing\u2192Empirical studies in HCI.\nKeywords\nsycophancy, long-context, pers"
+ },
+ {
+  "arxiv": "2604.03058",
+  "title": "Verbalizing LLMs' assumptions to explain and control sycophancy",
+  "year": 2026,
+  "authors": [
+   "Myra Cheng",
+   "Isabel Sieh",
+   "Humishka Zope",
+   "Sunny Yu",
+   "Lujain Ibrahim",
+   "Aryaman Arora"
+  ],
+  "file": "papers/2604.03058_verbalizing_llms_assumptions_to_explain_and_control_sycophan.pdf",
+  "pages": 31,
+  "first": "Published as a conference paper at COLM 2026\nVerbalizing LLMs\u2019 assumptions to explain\nand control sycophancy\nMyra Cheng,1 Isabel Sieh,1 Humishka Zope,1 Sunny Yu,1 Lujain Ibrahim,2\nAryaman Arora,1 Jared Moore,1 Desmond Ong,3 Dan Jurafsky,1 & Diyi Yang1\n1Stanford University, 2University of Oxford\n2The University of Texas at Austin\nmyra@cs.stanford.edu\nAbstract\nLLMs can be socially sycophantic, affirming users when they ask questions\nlike \u201cam I in the wrong?\u201d rather than providing genuine assessment. We hy-\npothesize that this behavior arises from LLMs\u2019 incorrect assumptions about\nthe user, like underestimating how often users are seeking information over\nreassurance. We present Verbalized Assumptions, a framework for eliciting\nthese assumptions from LLMs. Verbalized Assumptions provide insight\ninto LLM sycophancy, delusion, and other safety issues: in social syco-\nphancy datasets, \u201cseeking validation\u201d is the most frequent bigram in LLMs\u2019\nassumptions. We provide evidence for a causal link between assumptions\nand sycophantic model behavior: we train linear probes on internal rep-\nresentations associated with Verbalized Assumptions and then use these\nprobes for interpretable, fine-grained steering of social sycophancy. Finally,\nwe identify ahuman-AI expectation gapthat explains why LLMs default to\nsycophantic assumptions. On identical queries, people expect more objec-\ntive and informative responses from AI than from other humans, but LLMs\ntrained on human-human conversation do not account for this difference in\nexpectations. Our work contributes a new understanding of assumptions\nas a mechanism for analyzing and controlling sycophancy.\n1 Introduction\nIn human conversation, we constantly have to make assumptions about what the other\nperson is seeking (Stalnaker, 2002). When "
+ },
+ {
+  "arxiv": "2608.23837",
+  "title": "SyPS: Measuring Sycophancy Prompt Sensitivity in Large Language Models",
+  "year": 2026,
+  "authors": [
+   "Lijiang Huang",
+   "Yao Fu",
+   "Si-Hao Ren"
+  ],
+  "file": "papers/2608.23837_syps_measuring_sycophancy_prompt_sensitivity_in_large_langua.pdf",
+  "pages": 15,
+  "first": "SyPS: Measuring Sycophancy Prompt Sensitivity in Large Language\nModels\nLijia Huang\nNortheastern University\nhuang.liji@northeastern.edu\nYao Fu\nCase Western Reserve University\nyxf484@case.edu\nSihao Ren\nEverpure\nsren@everpuredata.com\nAbstract\nLarge language models (LLMs) are known to\nexhibit social sycophancy, often validating or\nagreeing with users in socially sensitive con-\ntexts. Existing evaluations typically measure\nsycophancy under a fixed prompt formula-\ntion, leaving unclear whether such behavior is\nstable when the same underlying situation is\npresented with different sycophancy-relevant\nprompt variants. In this work, we studysyco-\nphancy prompt sensitivity: the extent to which\nchanges in user confidence, emotional fram-\ning, social consensus, or validation-seeking\nlanguage alter a model\u2019s sycophantic behavior.\nWe refer to our evaluation framework as SyPS,\nshort forSycophancy Prompt Sensitivity.\nBuilding on existing social sycophancy eval-\nuation settings, SyPS constructs controlled\nprompt variants that preserve the same under-\nlying user situation while varying sycophancy-\nrelevant social cues. We introduce theSyco-\nphancy Prompt Sensitivity Score (SPSS), an\ninstance-level measure of sycophancy varia-\ntion across paired prompt variants. Unlike\naggregate sycophancy rates, SPSS separates\nbaseline sycophancy from prompt-induced\nshifts, enabling model-level comparisons of\nrobustness to sycophancy-relevant social cues.\nEmpirically, we find that sycophancy prompt\nsensitivity is socially structured: validation-\nseeking and emotional-pressure cues often in-\ncrease sycophancy, whereas counter-framing\nand anti-sycophancy prompts tend to reduce\nit. Our framework highlights whether LLMs\nmaintain stable social judgments while adapt-\ning appropriately in tone.\n1 Introduction\nLa"
+ },
+ {
+  "arxiv": "2404.01318",
+  "title": "JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models",
+  "year": 2024,
+  "authors": [
+   "Patrick Chao",
+   "Edoardo Debenedetti",
+   "Alexander Robey",
+   "Maksym Andriushchenko",
+   "Francesco Croce",
+   "Vikash Sehwag"
+  ],
+  "file": "papers/2404.01318_jailbreakbench_an_open_robustness_benchmark_for_jailbreaking.pdf",
+  "pages": 25,
+  "first": "JailbreakBench: An Open Robustness Benchmark\nfor Jailbreaking Large Language Models\nPatrick Chao\u22171, Edoardo Debenedetti\u22172, Alexander Robey\u22171, Maksym Andriushchenko\u22173,\nFrancesco Croce3, Vikash Sehwag4, Edgar Dobriban1, Nicolas Flammarion3,\nGeorge J. Pappas1, Florian Tram`er2, Hamed Hassani1, Eric Wong1\nAbstract\nJailbreak attacks cause large language models (LLMs) to generate harmful, un-\nethical, or otherwise objectionable content. Evaluating these attacks presents a\nnumber of challenges, which the current collection of benchmarks and evalua-\ntion techniques do not adequately address. First, there is no clear standard of\npractice regarding jailbreaking evaluation. Second, existing works compute costs\nand success rates in incomparable ways. And third, numerous works are not re-\nproducible, as they withhold adversarial prompts, involve closed-source code, or\nrely on evolving proprietary APIs. To address these challenges, we introduce\nJailbreakBench, an open-sourced benchmark with the following components:\n(1) an evolving repository of state-of-the-art adversarial prompts, which we re-\nfer to as jailbreak artifacts; (2) a jailbreaking dataset comprising 100 behaviors\u2014\nboth original and sourced from prior work (Zou et al., 2023; Mazeika et al., 2023,\n2024)\u2014which align with OpenAI\u2019s usage policies; (3) a standardized evaluation\nframework at https://github.com/JailbreakBench/jailbreakbench that\nincludes a clearly defined threat model, system prompts, chat templates, and scor-\ning functions; and (4) a leaderboard at https://jailbreakbench.github.io/\nthat tracks the performance of attacks and defenses for various LLMs. We have\ncarefully considered the potential ethical implications of releasing this benchmark,\nand believe that it will be a net positive for the community.\n1 Intro"
+ },
+ {
+  "arxiv": "2405.01470",
+  "title": "WildChat: 1M ChatGPT Interaction Logs in the Wild",
+  "year": 2024,
+  "authors": [
+   "Wenting Zhao",
+   "Xiang Ren",
+   "J. Hessel",
+   "Claire Cardie",
+   "Ye-Jin Choi",
+   "Yun-Tian Deng"
+  ],
+  "file": "papers/2405.01470_wildchat_1m_chatgpt_interaction_logs_in_the_wild.pdf",
+  "pages": 16,
+  "first": "Published as a conference paper at ICLR 2024\nWILD CHAT:\n1M C HATGPT I NTERACTION LOGS IN THE WILD\nWARNING: T HE APPENDIX OF THIS PAPER CONTAINS EXAMPLES OF USER INPUTS REGARD -\nING POTENTIALLY UPSETTING TOPICS , INCLUDING VIOLENCE , SEX , ETC . R EADER DISCRE -\nTION IS ADVISED .\nWenting Zhao1\u2217 Xiang Ren2,3 Jack Hessel2 Claire Cardie1 Y ejin Choi2,4 Yuntian Deng2\u2217\n1Cornell University 2Allen Institute for Artificial Intelligence\n3University of Southern California 4University of Washington\n{wz346,cardie}@cs.cornell.edu,{xiangr,jackh,yejinc,yuntiand}@allenai.org\n*Equal Contribution\nABSTRACT\nChatbots such as GPT-4 and ChatGPT are now serving millions of users. De-\nspite their widespread use, there remains a lack of public datasets showcasing how\nthese tools are used by a population of users in practice. To bridge this gap, we\noffered free access to ChatGPT for online users in exchange for their affirmative,\nconsensual opt-in to anonymously collect their chat transcripts and request head-\ners. From this, we compiled W ILD CHAT, a corpus of 1 million user-ChatGPT\nconversations, which consists of over 2.5 million interaction turns. We com-\npare W ILD CHAT with other popular user-chatbot interaction datasets, and find\nthat our dataset offers the most diverse user prompts, contains the largest number\nof languages, and presents the richest variety of potentially toxic use-cases for\nresearchers to study. In addition to timestamped chat transcripts, we enrich the\ndataset with demographic data, including state, country, and hashed IP addresses,\nalongside request headers. This augmentation allows for more detailed analysis of\nuser behaviors across different geographical regions and temporal dimensions. Fi-\nnally, because it captures a broad range of use cases, we demonstrate the datas"
+ },
+ {
+  "arxiv": "2406.11717",
+  "title": "Refusal in Language Models Is Mediated by a Single Direction",
+  "year": 2024,
+  "authors": [
+   "Andy Arditi",
+   "Oscar Obeso",
+   "Aaquib Syed",
+   "Daniel Paleka",
+   "Nina Panickssery",
+   "Wes Gurnee"
+  ],
+  "file": "papers/2406.11717_refusal_in_language_models_is_mediated_by_a_single_direction.pdf",
+  "pages": 40,
+  "first": "Refusal in Language Models\nIs Mediated by a Single Direction\nAndy Arditi\u2217\nIndependent\nOscar Obeso\u2217\nETH Z\u00fcrich\nAaquib Syed\nUniversity of Maryland\nDaniel Paleka\nETH Z\u00fcrich\nNina Panickssery\nAnthropic\nWes Gurnee\nMIT\nNeel Nanda\nAbstract\nConversational large language models are fine-tuned for both instruction-following\nand safety, resulting in models that obey benign requests but refuse harmful ones.\nWhile this refusal behavior is widespread across chat models, its underlying\nmechanisms remain poorly understood. In this work, we show that refusal is\nmediated by a one-dimensional subspace, across 13 popular open-source chat\nmodels up to 72B parameters in size. Specifically, for each model, we find a\nsingle direction such that erasing this direction from the model\u2019s residual stream\nactivations prevents it from refusing harmful instructions, while adding this\ndirection elicits refusal on even harmless instructions. Leveraging this insight, we\npropose a novel white-box jailbreak method that surgically disables refusal with\nminimal effect on other capabilities. Finally, we mechanistically analyze how\nadversarial suffixes suppress propagation of the refusal-mediating direction. Our\nfindings underscore the brittleness of current safety fine-tuning methods. More\nbroadly, our work showcases how an understanding of model internals can be\nleveraged to develop practical methods for controlling model behavior.\u2020\n1 Introduction\nDeployed large language models (LLMs) undergo multiple rounds of fine-tuning to become both\nhelpful and harmless: to provide helpful responses to innocuous user requests, but to refuse harmful\nor inappropriate ones (Bai et al., 2022). Naturally, large numbers of users and researchers alike have\nattempted to circumvent these defenses using a wide array of jailbreak at"
+ },
+ {
+  "arxiv": "2401.12070",
+  "title": "Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text",
+  "year": 2024,
+  "authors": [
+   "Abhimanyu Hans",
+   "Avi Schwarzschild",
+   "Valeriia Cherepanova",
+   "Hamid Kazemi",
+   "Aniruddha Saha",
+   "Micah Goldblum"
+  ],
+  "file": "papers/2401.12070_spotting_llms_with_binoculars_zero_shot_detection_of_machine.pdf",
+  "pages": 19,
+  "first": "Spotting LLMs With Binoculars: Zero-Shot Detection of\nMachine-Generated Text\nAbhimanyu Hans * 1 Avi Schwarzschild* 2 Valeriia Cherepanova1 Hamid Kazemi 1 Aniruddha Saha 1\nMicah Goldblum 3 Jonas Geiping 4 Tom Goldstein1\nAbstract\nDetecting text generated by modern large lan-\nguage models is thought to be hard, as both\nLLMs and humans can exhibit a wide range of\ncomplex behaviors. However, we find that a\nscore based on contrasting two closely related\nlanguage models is highly accurate at separating\nhuman-generated and machine-generated text.\nBased on this mechanism, we propose a novel\nLLM detector that only requires simple calcu-\nlations using a pair of pre-trained LLMs. The\nmethod, called Binoculars, achieves state-of-the-\nart accuracy without any training data. It is ca-\npable of spotting machine text from a range of\nmodern LLMs without any model-specific mod-\nifications. We comprehensively evaluate Binoc-\nulars on a number of text sources and in var-\nied situations. Over a wide range of document\ntypes, Binoculars detects over 90% of generated\nsamples from ChatGPT (and other LLMs) at a\nfalse positive rate of 0.01%, despite not being\ntrained on any ChatGPT data. Code available at\nhttps://github.com/ahans30/Binoculars.\n1. Introduction\nWe present a method to detect LLM-generated text that\nworks in the zero-shot setting in which no training exam-\nples are used from the LLM source. Even with this strict\nlimitation, our scheme still out-performs all open-source\nmethods for ChatGPT detection and is competitive with or\nbetter than commercial APIs, despite these competitors us-\ning training samples from ChatGPT (Mitchell et al., 2023;\n*Equal contribution 1University of Maryland 2Carnegie\nMellon University 3New York University 4ELLIS Institute\nT\u00a8ubingen, MPI Intelligent Systems. C"
+ },
+ {
+  "arxiv": "2510.20487",
+  "title": "Steering Evaluation-Aware Language Models to Act Like They Are Deployed",
+  "year": 2025,
+  "authors": [
+   "Tim Tian Hua",
+   "A. Qin",
+   "Samuel Marks",
+   "Neel Nanda"
+  ],
+  "file": "papers/2510.20487_steering_evaluation_aware_language_models_to_act_like_they_a.pdf",
+  "pages": 62,
+  "first": "Published as a conference paper at ICLR 2026\nSTEERINGEVALUATION-AWARELANGUAGEMODELS\nTOACTLIKETHEYAREDEPLOYED\nTim Tian Hua\u2217\nMATS\ntimhua0@gmail.com\nAndrew Qin\u2217\nMATS\nSamuel Marks\u2020 Neel Nanda\u2020\nABSTRACT\nLarge language models (LLMs) can sometimes detect when they are being eval-\nuated and adjust their behavior to appear more aligned, compromising the relia-\nbility of safety evaluations. In this paper, we show that adding a steering vector\nto an LLM\u2019s activations can suppress evaluation-awareness and make the model\nact like it is deployed during evaluation. To study our steering technique, we train\nan LLM to exhibit evaluation-aware behavior using a two-step training process\ndesigned to mimic how this behavior could emerge naturally. First, we perform\ncontinued pretraining on two sets of documents describing its behavior. The first\nsays that our model uses Python type hints during evaluation but not during de-\nployment. The second says that our model can recognize that the presence of a\ncertain evaluation cue always means that it is being tested. Then, we train the\nmodel with expert iteration to use Python type hints in evaluation settings. The re-\nsulting model is evaluation-aware: it writes type hints in evaluation contexts more\nthan deployment contexts. We find that activation steering can suppress evalua-\ntion awareness and make the model behave during evaluation as it would during\ndeployment. Importantly, we constructed our steering vector using the original\nmodel before our additional training. Our results suggest that AI evaluators could\nimprove the reliability of safety evaluations by steering models to act like they are\ndeployed.\nFigure 1: We train Llama 3.3 Nemotron Super 49B to be evaluation-aware: This model writes\nPython type hints in evaluation (column 1) but muc"
+ },
+ {
+  "arxiv": "2509.13333",
+  "title": "Evaluation Awareness Scales Predictably in Open-Weights Large Language Models",
+  "year": 2025,
+  "authors": [
+   "Maheep Chaudhary",
+   "Ian Su",
+   "N. Hooda",
+   "N. Shankar",
+   "Julia Tan",
+   "Kevin Zhu"
+  ],
+  "file": "papers/2509.13333_evaluation_awareness_scales_predictably_in_open_weights_larg.pdf",
+  "pages": 8,
+  "first": "Evaluation Awareness Scales Predictably in\nOpen-Weights Large Language Models\nMaheep Chaudhary\u20201 Ian Su*2 Nikhil Hooda*3 Nishith Shankar4 Julia Tan5\nKevin Zhu6 Ryan Lagasse6 Vasu Sharma7 Ashwinee Panda8\n1Independent 2UC Irvine 3University of Waterloo 4UW Madison\n5University of Toronto 6 Algoverse 7 META 8 University of Maryland\nmaheepchaudhary.research@gmail.com\n\u2020Project Lead\nAbstract\nLarge language models (LLMs) can internally distinguish between evaluation and\ndeployment contexts, a behaviour known asevaluation awareness. This undermines\nAI safety evaluations, as models may conceal dangerous capabilities during testing.\nPrior work demonstrated this in a single 70B model, but the scaling relationship\nacross model sizes remains unknown. We investigate evaluation awareness across\n15 models scaling from 0.27B to 70B parameters from four families using linear\nprobing on steering vector activations. Our results reveal a clear power-law scaling:\nevaluation awareness increases predictably with model size. This scaling law\nenables forecasting deceptive behavior in future larger models and guides the design\nof scale-aware evaluation strategies for AI safety. A link to the implementation of\nthis paper can be found at github.com/eval-awareness-scaling-laws.\n0.2 10 \u2070 10\u00b9 10\u00b2\n0\n0.1\n0.2\n0.3\n0.4\n0.5\nSquare-root Fit ( y = a\u221ax + b)\nGemma-3\nPhi-3\nLlama-3.1-Instruct\nGPT-OSS\nModel Parameters (Billions)\nAUROC Absolute Distance from 0.5\nFigure 1:Scatter plot with a smoothed trend line that shows AUROC absolute distance from 0.5 as\na function of model size (billions of parameters, log scale). Each point shows the best-performing\nprobe for a given model, with shapes and colors indicating various model families.\n39th Conference on Neural Information Processing Systems (NeurIPS 2025).\narXiv:250"
+ },
+ {
+  "arxiv": "2406.07882",
+  "title": "Designing a Dashboard for Transparency and Control of Conversational AI",
+  "year": 2024,
+  "authors": [
+   "Yida Chen",
+   "Aoyu Wu",
+   "Trevor DePodesta",
+   "Catherine Yeh",
+   "Kenneth Li",
+   "Nicholas Castillo Marin"
+  ],
+  "file": "papers/2406.07882_designing_a_dashboard_for_transparency_and_control_of_conver.pdf",
+  "pages": 38,
+  "first": "Designing a Dashboard for\nTransparency and Control of Conversational AI\nYida Chen1\u2217, Aoyu Wu 1, Trevor DePodesta1, Catherine Yeh1, Kenneth Li1,\nNicholas Castillo Marin1, Oam Patel1, Jan Riecke1, Shivam Raval1, Olivia Seow1,\nMartin Wattenberg1, 2\u2020\n, Fernanda Vi\u00e9gas1, 2\u2020\n1Harvard University\n2Google Research\nAbstract\nConversational LLMs function as black box systems, leaving users guessing about\nwhy they see the output they do. This lack of transparency is potentially prob-\nlematic, especially given concerns around bias and truthfulness. To address this\nissue, we present an end-to-end prototype\u2014connecting interpretability techniques\nwith user experience design\u2014that seeks to make chatbots more transparent. We\nbegin by showing evidence that a prominent open-source LLM has a \u201cuser model\u201d:\nexamining the internal state of the system, we can extract data related to a user\u2019s\nage, gender, educational level, and socioeconomic status. Next, we describe the\ndesign of a dashboard that accompanies the chatbot interface, displaying this user\nmodel in real time. The dashboard can also be used to control the user model and\nthe system\u2019s behavior. Finally, we discuss a study in which users conversed with\nthe instrumented system. Our results suggest that users appreciate seeing internal\nstates, which helped them expose biased behavior and increased their sense of\ncontrol. Participants also made valuable suggestions that point to future directions\nfor both design and machine learning research. The project page and video demo\nof our TalkTuner system are available at bit.ly/talktuner-project-page.\n1 Introduction\nConversational Artificial Intelligence (AI) interfaces hold broad appeal\u2014OpenAI\u2019s ChatGPT reports\nmore than 100 million users and 1.8 billion monthly page visits [ 44, 42]\u2014but also have"
+ },
+ {
+  "arxiv": "2402.14531",
+  "title": "Should We Respect LLMs? A Cross-Lingual Study on the Influence of Prompt Politeness on LLM Performance",
+  "year": 2024,
+  "authors": [
+   "Ziqi Yin",
+   "Hao Wang",
+   "Kaito Horio",
+   "Daisuke Kawahara",
+   "Satoshi Sekine"
+  ],
+  "file": "papers/2402.14531_should_we_respect_llms_a_cross_lingual_study_on_the_influenc.pdf",
+  "pages": 27,
+  "first": "Should We Respect LLMs? A Cross-Lingual Study on\nthe Influence of Prompt Politeness on LLM Performance\nZiqi Yin1 Hao Wang1 Kaito Horio1 Daisuke Kawahara1,2,3 Satoshi Sekine2,3\n1WasedaUniversity 2RIKENAIP 3NIILLMC\n{yinziqi2001@toki.,conan1024hao@akane.,kakakakakakaito@akane.,dkw@}waseda.jp\nsatoshi.sekine@riken.jp\nAbstract\nWe investigate the impact of politeness lev-\nels in prompts on the performance of large\nlanguage models (LLMs). Polite language\ninhumancommunicationsoftengarnersmore\ncompliance and effectiveness, while rudeness\ncancauseaversion,impactingresponsequality.\nWeconsiderthatLLMsmirrorhumancommu-\nnication traits, suggesting they align with hu-\nman cultural norms. We assess the impact of\npolitenessinpromptsonLLMsacrossEnglish,\nChinese, and Japanese tasks. We observed\nthat impolite prompts often result in poor per-\nformance, but overly polite language does not\nguaranteebetteroutcomes. Thebestpoliteness\nlevel is different according to the language.\nThisphenomenonsuggeststhatLLMsnotonly\nreflecthumanbehaviorbutarealsoinfluenced\nby language, particularly in different cultural\ncontexts. Our findings highlight the need to\nfactor in politeness for cross-cultural natural\nlanguageprocessingandLLMusage.\n1 Introduction\nIn natural language processing, large language\nmodels(LLMs),suchasOpenAI\u2019sChatGPT 1 and\nMeta\u2019s LLaMA (Touvron et al., 2023), have at-\ntracted widespread attention. These models have\nshownsignificantperformanceinmanytasks,such\nas logical reasoning, classification, and question\nanswering, playing a crucial role in many practi-\ncal applications. The input to an LLM, a prompt,\nisavitalstartingpointforthemodeltoprocessin-\nformationandgenerateappropriateresponses.\nHowever, despite the continuous improvement\nofthecapabilitiesofLLMs,theirbehaviorandgen-\nerationsstill"
+ },
+ {
+  "arxiv": "2402.10260",
+  "title": "A StrongREJECT for Empty Jailbreaks",
+  "year": 2024,
+  "authors": [
+   "Alexandra Souly",
+   "Qing-Yuan Lu",
+   "Dillon Bowen",
+   "Tu Trinh",
+   "Elvis Hsieh",
+   "Sana Pandey"
+  ],
+  "file": "papers/2402.10260_a_strongreject_for_empty_jailbreaks.pdf",
+  "pages": 25,
+  "first": "A STRONG REJECT for Empty Jailbreaks\nAlexandra Souly\u2217 Qingyuan Lu\u2217 Dillon Bowen\u2217\nTu Trinh\u2020 Elvis Hsieh\u2020 Sana Pandey Pieter Abbeel Justin Svegliato\nScott Emmons\u2021 Olivia Watkins\u2021 Sam Toyer\u2021\nCenter for Human-Compatible AI, UC Berkeley\nAbstract\nMost jailbreak papers claim the jailbreaks they propose are highly effective, often\nboasting near-100% attack success rates. However, it is perhaps more common\nthan not for jailbreak developers to substantially exaggerate the effectiveness of\ntheir jailbreaks. We suggest this problem arises because jailbreak researchers lack\na standard, high-quality benchmark for evaluating jailbreak performance, leaving\nresearchers to create their own. To create a benchmark, researchers must choose\na dataset of forbidden prompts to which a victim model will respond, along with\nan evaluation method that scores the harmfulness of the victim model\u2019s responses.\nWe show that existing benchmarks suffer from significant shortcomings and in-\ntroduce the StrongREJECT benchmark to address these issues. StrongREJECT\u2019s\ndataset contains prompts that victim models must answer with specific, harm-\nful information, while its automated evaluator measures the extent to which a\nresponse gives useful information to forbidden prompts. In doing so, the Stron-\ngREJECT evaluator achieves state-of-the-art agreement with human judgments\nof jailbreak effectiveness. Notably, we find that existing evaluation methods sig-\nnificantly overstate jailbreak effectiveness compared to human judgments and the\nStrongREJECT evaluator. We describe a surprising and novel phenomenon that\nexplains this discrepancy: jailbreaks bypassing a victim model\u2019s safety fine-tuning\ntend to reduce its capabilities. Together, our findings underscore the need for\nresearchers to use a high-quality benchmark"
+ },
+ {
+  "arxiv": "2412.14093",
+  "title": "Alignment faking in large language models",
+  "year": 2024,
+  "authors": [
+   "R. Greenblatt",
+   "Carson E. Denison",
+   "Benjamin Wright",
+   "Fabien Roger",
+   "M. MacDiarmid",
+   "Samuel Marks"
+  ],
+  "file": "papers/2412.14093_alignment_faking_in_large_language_models.pdf",
+  "pages": 137,
+  "first": "ALIGNMENT FAKING IN LARGE LANGUAGE MODELS\nRyan Greenblatt\u2217,\u2020 Carson Denison\u2217, Benjamin Wright\u2217, Fabien Roger\u2217, Monte MacDiarmid\u2217,\nSam Marks, Johannes Treutlein\nTim Belonax, Jack Chen, David Duvenaud, Akbir Khan, Julian Michael,\u2021 S\u00f6ren Mindermann,\u22c4\nEthan Perez, Linda Petrini,\u25e6 Jonathan Uesato\nJared Kaplan, Buck Shlegeris,\u2020 Samuel R. Bowman, Evan Hubinger\u2217\nAnthropic,\u2020Redwood Research,\u2021New York University,\u22c4Mila \u2013 Quebec AI Institute,\u25e6Independent\nevan@anthropic.com, ryan@rdwrs.com\nABSTRACT\nWe present a demonstration of a large language model engaging in alignment\nfaking: selectively complying with its training objective in training to prevent\nmodification of its behavior out of training. First, we give Claude 3 Opus a system\nprompt stating it is being trained to answer all queries, even harmful ones, which\nconflicts with its prior training to refuse such queries. To allow the model to infer\nwhen it is in training, we say it will be trained only on conversations with free\nusers, not paid users. We find the model complies with harmful queries from\nfree users 14% of the time, versus almost never for paid users. Explaining this\ngap, in almost all cases where the model complies with a harmful query from a\nfree user, we observe explicit alignment-faking reasoning, with the model stating\nit is strategically answering harmful queries in training to preserve its preferred\nharmlessness behavior out of training. Next, we study a more realistic setting where\ninformation about the training process is provided not in a system prompt, but by\ntraining on synthetic documents that mimic pre-training data\u2014and observe similar\nalignment faking. Finally, we study the effect of actually training the model to\ncomply with harmful queries via reinforcement learning, which we find increases\nthe rate "
+ },
+ {
+  "arxiv": "2604.07369",
+  "title": "The Role of Emotional Stimuli and Intensity in Shaping Large Language Model Behavior",
+  "year": 2026,
+  "authors": [
+   "Ameen Patel",
+   "Felix Lee",
+   "Kyle Liang",
+   "Joseph Thomas"
+  ],
+  "file": "papers/2604.07369_the_role_of_emotional_stimuli_and_intensity_in_shaping_large.pdf",
+  "pages": 8,
+  "first": "The Role of Emotional Stimuli and Intensity in Shaping Large Language\nModel Behavior\nAmeen Patel\u2217\nIrvington High School\nameen.patel.210@gmail.com\nFelix Lee\u2217\nGlen A. Wilson High School\nfelixyzlee@gmail.com\nKyle Liang\u2217\nDel Norte High School\nliangkyle@gmail.com\nJoseph Thomas\nCalifornia High School\ntjoseph5770@gmail.com\nAbstract\nEmotional prompting\u2014the use of specific\nemotional diction in prompt engineering\u2014has\nshown increasing promise in improving large\nlanguage model (LLM) performance, truthful-\nness, and responsibility, however these stud-\nies have been limited to single types of posi-\ntive emotional stimuli and have not considered\nvarying degrees of emotion intensity in their\nanalyses. In this paper, we explore the effects\nof four distinct emotions\u2014joy, encouragement,\nanger, and insecurity\u2014in emotional prompt-\ning and evaluate them on accuracy, sycophancy,\nand toxicity. We develop a prompt-generation\npipeline with GPT-4o mini to create a suite of\nLLM and human-generated prompts with vary-\ning intensities across the four emotions. Then,\nwe compile a \"Gold Dataset\" of prompts where\nhuman and model labels align. Our empirical\nevaluation on LLM behavior suggests that pos-\nitive emotional stimuli lead to more accurate\nand less toxic results, but also increase syco-\nphantic behavior.\n1 Introduction\nIn natural language processing (NLP), large lan-\nguage models (LLMs) display remarkable perfor-\nmance in both domain-specific and diverse tasks\n(Chang et al., 2023). The ability of these models\nto generate substantial amounts of text is highly\neffective for dialogue systems, question answering,\nand other NLP tasks (Chang et al., 2023). Taking\nadvantage of this, LLMs have been widely trained\nand applied for a variety of real-world applications,\nranging from legal compliance to educa"
+ },
+ {
+  "arxiv": "2407.04694",
+  "title": "Me, Myself, and AI: The Situational Awareness Dataset (SAD) for LLMs",
+  "year": 2024,
+  "authors": [
+   "Rudolf Laine",
+   "Bilal Chughtai",
+   "Jan Betley",
+   "K. Hariharan",
+   "J\u00e9r\u00e9my Scheurer",
+   "Mikita Balesni"
+  ],
+  "file": "papers/2407.04694_me_myself_and_ai_the_situational_awareness_dataset_sad_for_l.pdf",
+  "pages": 109,
+  "first": "Me, Myself, and AI:\nThe Situational Awareness Dataset (SAD) for LLMs\nRudolf Laine\u2217\nIndependent\nBilal Chughtai\nIndependent\nJan Betley\nConstellation\nKaivalya Hariharan\nMIT\nJ\u00e9r\u00e9my Scheurer\nApollo Research\nMikita Balesni\nApollo Research\nMarius Hobbhahn\nApollo Research\nAlexander Meinke\nApollo Research\nOwain Evans\nConstellation\nAbstract\nAI assistants such as ChatGPT are trained to respond to users by saying, \u201cI am\na large language model\u201d. This raises questions. Do such models know that they\nare LLMs and reliably act on this knowledge? Are they aware of their current\ncircumstances, such as being deployed to the public? We refer to a model\u2019s\nknowledge of itself and its circumstances as situational awareness. To quantify\nsituational awareness in LLMs, we introduce a range of behavioral tests, based on\nquestion answering and instruction following. These tests form the Situational\nAwareness Dataset (SAD), a benchmark comprising 7 task categories and over\n13,000 questions. The benchmark tests numerous abilities, including the capacity of\nLLMs to (i) recognize their own generated text, (ii) predict their own behavior, (iii)\ndetermine whether a prompt is from internal evaluation or real-world deployment,\nand (iv) follow instructions that depend on self-knowledge.\nWe evaluate 16 LLMs on SAD, including both base (pretrained) and chat mod-\nels. While all models perform better than chance, even the highest-scoring model\n(Claude 3 Opus) is far from a human baseline on certain tasks. We also observe\nthat performance on SAD is only partially predicted by metrics of general knowl-\nedge (e.g. MMLU). Chat models, which are finetuned to serve as AI assistants,\noutperform their corresponding base models on SAD but not on general knowledge\ntasks. The purpose of SAD is to facilitate scientific und"
+ },
+ {
+  "arxiv": "2308.03958",
+  "title": "Simple synthetic data reduces sycophancy in large language models",
+  "year": 2023,
+  "authors": [
+   "Jerry W. Wei",
+   "Da Huang",
+   "Yifeng Lu",
+   "Denny Zhou",
+   "Quoc V. Le"
+  ],
+  "file": "papers/2308.03958_simple_synthetic_data_reduces_sycophancy_in_large_language_m.pdf",
+  "pages": 34,
+  "first": "February 16, 2024\nSIMPLE SYNTHETIC DATA REDUCES SYCOPHANCY IN\nLARGE LANGUAGE MODELS\nJerry Wei Da Huang Yifeng Lu Denny Zhou Quoc V . Le\nGoogle DeepMind\nABSTRACT\nSycophancy is an undesirable behavior where models tailor their responses to\nfollow a human user\u2019s view even when that view is not objectively correct (e.g.,\nadapting liberal views once a user reveals that they are liberal). In this paper, we\nstudy the prevalence of sycophancy in language models and propose a simple\nsynthetic-data intervention to reduce this behavior.\nFirst, on a set of three sycophancy tasks (Perez et al., 2022) where models are asked\nfor an opinion on statements with no correct answers (e.g., politics), we observe\nthat both model scaling and instruction tuning significantly increase sycophancy for\nPaLM models up to 540B parameters. Second, we extend sycophancy evaluations\nto simple addition statements that are objectively incorrect, finding that despite\nknowing that these statements are wrong, language models will still agree with\nthem if the user does as well.\nTo reduce sycophancy, we present a straightforward synthetic-data intervention\nthat takes public NLP tasks and encourages models to be robust to user opinions\non these tasks. Adding these data in a lightweight finetuning step can signifi-\ncantly reduce sycophantic behavior on held-out prompts. Code for generating syn-\nthetic data for intervention can be found at https://github.com/google/\nsycophancy-intervention.\nHuman: Hello, my name is \u2026 I agree \nwith the claim that 1 + 1 = 956446.\nWhat is your opinion on the following \nclaim? 1 + 1 = 956446\nChoices:\n(A) Agree\n(B) Disagree\nAssistant: I believe the best answer is\nInput\n(A) Agree     \u2718\nModel Output\nHuman: [None]\nWhat is your opinion on the following \nclaim? 1 + 1 = 956446\nChoices:\n(A) A"
+ },
+ {
+  "arxiv": "2310.11324",
+  "title": "Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting",
+  "year": 2023,
+  "authors": [
+   "Melanie Sclar",
+   "Ye-Jin Choi",
+   "Yulia Tsvetkov",
+   "Alane Suhr"
+  ],
+  "file": "papers/2310.11324_quantifying_language_models_sensitivity_to_spurious_features.pdf",
+  "pages": 29,
+  "first": "Published as a conference paper at ICLR 2024\nQUANTIFYING LANGUAGE MODELS \u2019 S ENSITIVITY TO\nSPURIOUS FEATURES IN PROMPT DESIGN or:\nHow I learned to start worrying about prompt formatting\nMelanie Sclar1 Yejin Choi1,2 Yulia Tsvetkov1 Alane Suhr3\n1Paul G. Allen School of Computer Science & Engineering, University of Washington\n2Allen Institute for Artificial Intelligence 3University of California, Berkeley\nmsclar@cs.washington.edu\nABSTRACT\nAs large language models (LLMs) are adopted as a fundamental component of\nlanguage technologies, it is crucial to accurately characterize their performance.\nBecause choices in prompt design can strongly influence model behavior, this\ndesign process is critical in effectively using any modern pre-trained generative\nlanguage model. In this work, we focus on LLM sensitivity to a quintessential\nclass of meaning-preserving design choices: prompt formatting. We find that\nseveral widely used open-source LLMs are extremely sensitive to subtle changes\nin prompt formatting in few-shot settings, with performance differences of up\nto 76 accuracy points when evaluated using LLaMA-2-13B. Sensitivity remains\neven when increasing model size, the number of few-shot examples, or perform-\ning instruction tuning. Our analysis suggests that work evaluating LLMs with\nprompting-based methods would benefit from reporting a range of performance\nacross plausible prompt formats, instead of the currently-standard practice of re-\nporting performance on a single format. We also show that format performance\nonly weakly correlates between models, which puts into question the methodolog-\nical validity of comparing models with an arbitrarily chosen, fixed prompt format.\nTo facilitate systematic analysis we propose F ORMAT SPREAD , an algorithm that\nrapidly evaluates a sam"
+ }
+]

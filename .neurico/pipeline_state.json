@@ -1,0 +1,95 @@
+{
+  "created_at": "2026-10-04T01:47:03.263401Z",
+  "stages": {
+    "resource_finder": {
+      "status": "completed",
+      "started_at": "2026-10-04T01:47:03.281779Z",
+      "completed_at": "2026-10-04T02:00:44.632459Z",
+      "success": true,
+      "outputs": {
+        "literature_review": "/workspaces/do-llms-behave-differently-when-4fc5-claude-fable-5-1/literature_review.md",
+        "resources_catalog": "/workspaces/do-llms-behave-differently-when-4fc5-claude-fable-5-1/resources.md",
+        "papers_dir": "/workspaces/do-llms-behave-differently-when-4fc5-claude-fable-5-1/papers",
+        "datasets_dir": "/workspaces/do-llms-behave-differently-when-4fc5-claude-fable-5-1/datasets",
+        "code_dir": "/workspaces/do-llms-behave-differently-when-4fc5-claude-fable-5-1/code"
+      },
+      "expected_outputs": [
+        "literature_review.md",
+        "resources.md"
+      ],
+      "next_steps": [
+        "Review the literature and resource catalog before running experiments."
+      ],
+      "workspace_check": {
+        "root": "/workspaces/do-llms-behave-differently-when-4fc5-claude-fable-5-1",
+        "exists": true,
+        "is_directory": true,
+        "healthy": true
+      },
+      "workspace_check_at_completion": {
+        "root": "/workspaces/do-llms-behave-differently-when-4fc5-claude-fable-5-1",
+        "exists": true,
+        "is_directory": true,
+        "healthy": true
+      },
+      "output_validation": {
+        "valid": true,
+        "expected": [
+          "literature_review.md",
+          "resources.md"
+        ],
+        "present": [
+          "literature_review.md",
+          "resources.md"
+        ],
+        "missing": [],
+        "outside_workspace": []
+      }
+    },
+    "experiment_runner": {
+      "status": "failed",
+      "started_at": "2026-10-04T02:00:44.656801Z",
+      "completed_at": "2026-10-04T07:02:15.337431Z",
+      "success": false,
+      "outputs": {
+        "success": false,
+        "return_code": 1,
+        "elapsed_time": 18090.656409740448,
+        "log_file": "/workspaces/do-llms-behave-differently-when-4fc5-claude-fable-5-1/logs/execution_claude.log",
+        "transcript_file": "/workspaces/do-llms-behave-differently-when-4fc5-claude-fable-5-1/logs/execution_claude_transcript.jsonl",
+        "background_processes_terminated": false
+      },
+      "expected_outputs": [
+        "REPORT.md"
+      ],
+      "next_steps": [
+        "Validate the report and experimental artifacts before finalizing."
+      ],
+      "workspace_check": {
+        "root": "/workspaces/do-llms-behave-differently-when-4fc5-claude-fable-5-1",
+        "exists": true,
+        "is_directory": true,
+        "healthy": true
+      },
+      "workspace_check_at_completion": {
+        "root": "/workspaces/do-llms-behave-differently-when-4fc5-claude-fable-5-1",
+        "exists": true,
+        "is_directory": true,
+        "healthy": true
+      },
+      "output_validation": {
+        "valid": true,
+        "expected": [
+          "REPORT.md"
+        ],
+        "present": [
+          "REPORT.md"
+        ],
+        "missing": [],
+        "outside_workspace": []
+      }
+    }
+  },
+  "current_stage": null,
+  "completed": false
+}

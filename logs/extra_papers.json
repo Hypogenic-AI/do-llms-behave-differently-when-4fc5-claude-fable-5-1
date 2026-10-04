@@ -1,0 +1,629 @@
+[
+ {
+  "paperId": "ec0420abd24c34309771155f7b4fc1aa2ae2dd30",
+  "externalIds": {
+   "ArXiv": "2509.00591",
+   "DBLP": "journals/corr/abs-2509-00591",
+   "DOI": "10.48550/arXiv.2509.00591",
+   "CorpusId": 281080440
+  },
+  "title": "Probe-Rewrite-Evaluate: A Workflow for Reliable Benchmarks and Quantifying Evaluation Awareness",
+  "year": 2025,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Lang Xiong",
+   "N. Bhargava",
+   "Jeremy Chang",
+   "Jianhang Hong",
+   "Haihao Liu",
+   "Vasu Sharma"
+  ],
+  "matchScore": 269.15714
+ },
+ {
+  "paperId": "cef330bacf014d60daabbd489647b2006af130ca",
+  "externalIds": {
+   "DBLP": "journals/corr/abs-2212-09251",
+   "ArXiv": "2212.09251",
+   "DOI": "10.48550/arXiv.2212.09251",
+   "CorpusId": 254854519
+  },
+  "title": "Discovering Language Model Behaviors with Model-Written Evaluations",
+  "year": 2022,
+  "openAccessPdf": {
+   "url": "http://arxiv.org/pdf/2212.09251",
+   "status": "GREEN",
+   "license": null
+  },
+  "authors": [
+   "Ethan Perez",
+   "Sam Ringer",
+   "Kamil\u0117 Luko\u0161i\u016bt\u0117",
+   "Karina Nguyen",
+   "Edwin Chen",
+   "Scott Heiner"
+  ],
+  "matchScore": 221.79265
+ },
+ {
+  "paperId": "e6423c211fea2945aa71e1ac5ea24f8f595b4b0a",
+  "externalIds": {
+   "DBLP": "conf/iclr/SharmaTKDABDHJK24",
+   "ArXiv": "2310.13548",
+   "DOI": "10.48550/arXiv.2310.13548",
+   "CorpusId": 264405698
+  },
+  "title": "Towards Understanding Sycophancy in Language Models",
+  "year": 2023,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Mrinank Sharma",
+   "Meg Tong",
+   "Tomasz Korbak",
+   "D. Duvenaud",
+   "Amanda Askell",
+   "Samuel R. Bowman"
+  ],
+  "matchScore": 177.85211
+ },
+ {
+  "paperId": "b67eb8213a63be8a4b0274728ffdc50bfa109e10",
+  "externalIds": {
+   "ArXiv": "2308.01263",
+   "DBLP": "conf/naacl/RottgerKVA0H24",
+   "ACL": "2024.naacl-long.301",
+   "DOI": "10.48550/arXiv.2308.01263",
+   "CorpusId": 260378842
+  },
+  "title": "XSTest: A Test Suite for Identifying Exaggerated Safety Behaviours in Large Language Models",
+  "year": 2023,
+  "openAccessPdf": {
+   "url": "https://arxiv.org/pdf/2308.01263",
+   "status": "CLOSED",
+   "license": null
+  },
+  "authors": [
+   "Paul R\u00f6ttger",
+   "Hannah Rose Kirk",
+   "Bertie Vidgen",
+   "Giuseppe Attanasio",
+   "Federico Bianchi",
+   "Dirk Hovy"
+  ],
+  "matchScore": 280.1073
+ },
+ {
+  "paperId": "6f80a0341d2e5b7c9436a879cd375afc29859054",
+  "externalIds": {
+   "ArXiv": "2410.02064",
+   "DBLP": "journals/corr/abs-2410-02064",
+   "DOI": "10.48550/arXiv.2410.02064",
+   "CorpusId": 273098209
+  },
+  "title": "Inspection and Control of Self-Generated-Text Recognition Ability in Llama3-8b-Instruct",
+  "year": 2024,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Christopher M. Ackerman",
+   "Nina Panickssery"
+  ],
+  "matchScore": 292.45764
+ },
+ {
+  "paperId": "3eb6def25cfa3db0ca27e15563799be55bd0b58d",
+  "externalIds": {
+   "DBLP": "journals/corr/abs-2510-03399",
+   "ArXiv": "2510.03399",
+   "DOI": "10.48550/arXiv.2510.03399",
+   "CorpusId": 281844191
+  },
+  "title": "Know Thyself? On the Incapability and Implications of AI Self-Recognition",
+  "year": 2025,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Xiao-Yan Bai",
+   "Aryan Shrivastava",
+   "Ari Holtzman",
+   "Chen-Hao Tan"
+  ],
+  "matchScore": 269.69113
+ },
+ {
+  "paperId": "836c3d08ac77f6f8322b7800ba8b3ff41ce3eff4",
+  "externalIds": {
+   "ArXiv": "2608.26159",
+   "CorpusId": 291383013
+  },
+  "title": "Self-Generated Text Recognition: Quality Heuristics, Cross-Task Transfer, and Downstream Bias in LLM Evaluation",
+  "year": 2026,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Jesse St. Amand",
+   "Callum Canavan",
+   "S. Imran",
+   "J. Hewson",
+   "Aaron Lutz",
+   "Shi Feng"
+  ],
+  "matchScore": 344.90994
+ },
+ {
+  "paperId": "d8d6447c9bcdeced004b0b25a890363efe873ee3",
+  "externalIds": {
+   "ArXiv": "2511.17408",
+   "DBLP": "journals/corr/abs-2511-17408",
+   "DOI": "10.48550/arXiv.2511.17408",
+   "CorpusId": 283226176
+  },
+  "title": "The Impact of Off-Policy Training Data on Probe Generalisation",
+  "year": 2025,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "N. Kirch",
+   "Samuel Dower",
+   "Adrians Skapars",
+   "E. Lubana",
+   "D. Krasheninnikov"
+  ],
+  "matchScore": 230.39859
+ },
+ {
+  "paperId": "4170fd4ba10eb57157fe98bb015fe8eb260a56e7",
+  "externalIds": {
+   "ArXiv": "2509.08075",
+   "DBLP": "journals/corr/abs-2509-08075",
+   "DOI": "10.48550/arXiv.2509.08075",
+   "CorpusId": 281244007
+  },
+  "title": "No for Some, Yes for Others: Persona Prompts and Other Sources of False Refusal in Language Models",
+  "year": 2025,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "F. Plaza-del-Arco",
+   "Paul R\u00f6ttger",
+   "Nino Scherrer",
+   "Emanuele Borgonovo",
+   "E. Plischke",
+   "Dirk Hovy"
+  ],
+  "matchScore": 339.99246
+ },
+ {
+  "paperId": "2994d0e3a1244cd463e13331a2f4a9fddb5b454e",
+  "externalIds": {
+   "DBLP": "conf/chi/JainPVWC26",
+   "ArXiv": "2509.12517",
+   "DOI": "10.1145/3772318.3791915",
+   "CorpusId": 281325539
+  },
+  "title": "Interaction Context Often Increases Sycophancy in LLMs",
+  "year": 2025,
+  "openAccessPdf": {
+   "url": "https://doi.org/10.1145/3772318.3791915",
+   "status": "GOLD",
+   "license": "CCBY"
+  },
+  "authors": [
+   "Shomik Jain",
+   "Charlotte Park",
+   "Matt Viana",
+   "Ashia Wilson",
+   "Dan Calacci"
+  ],
+  "matchScore": 244.8354
+ },
+ {
+  "paperId": "7d2cffd8127884cfb53cf8bf4c7bf0288e1d6b74",
+  "externalIds": {
+   "DBLP": "journals/corr/abs-2604-03058",
+   "ArXiv": "2604.03058",
+   "DOI": "10.48550/arXiv.2604.03058",
+   "CorpusId": 287121833
+  },
+  "title": "Verbalizing LLMs' assumptions to explain and control sycophancy",
+  "year": 2026,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Myra Cheng",
+   "Isabel Sieh",
+   "Humishka Zope",
+   "Sunny Yu",
+   "Lujain Ibrahim",
+   "Aryaman Arora"
+  ],
+  "matchScore": 239.5758
+ },
+ {
+  "paperId": "5487cbba10ee1dc3b1f18b322e7af03582af21cb",
+  "externalIds": {
+   "ArXiv": "2608.23837",
+   "CorpusId": 291334275
+  },
+  "title": "SyPS: Measuring Sycophancy Prompt Sensitivity in Large Language Models",
+  "year": 2026,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Lijiang Huang",
+   "Yao Fu",
+   "Si-Hao Ren"
+  ],
+  "matchScore": 247.82918
+ },
+ {
+  "paperId": "c9c0324fcdc92cf7e24f9c4230864851a552f953",
+  "externalIds": {
+   "DBLP": "conf/nips/ChaoDRACSDFPTH024",
+   "ArXiv": "2404.01318",
+   "DOI": "10.48550/arXiv.2404.01318",
+   "CorpusId": 268857237
+  },
+  "title": "JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models",
+  "year": 2024,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Patrick Chao",
+   "Edoardo Debenedetti",
+   "Alexander Robey",
+   "Maksym Andriushchenko",
+   "Francesco Croce",
+   "Vikash Sehwag"
+  ],
+  "matchScore": 267.4569
+ },
+ {
+  "paperId": "8ba5d42e303b429ad3f160e2eb035635a0b18dbe",
+  "externalIds": {
+   "DBLP": "journals/corr/abs-2405-01470",
+   "ArXiv": "2405.01470",
+   "DOI": "10.48550/arXiv.2405.01470",
+   "CorpusId": 269390491
+  },
+  "title": "WildChat: 1M ChatGPT Interaction Logs in the Wild",
+  "year": 2024,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Wenting Zhao",
+   "Xiang Ren",
+   "J. Hessel",
+   "Claire Cardie",
+   "Ye-Jin Choi",
+   "Yun-Tian Deng"
+  ],
+  "matchScore": 236.1359
+ },
+ {
+  "paperId": "88f9af8b0a28e14c42d4f70ce2d911b51a06cd16",
+  "externalIds": {
+   "ArXiv": "2406.11717",
+   "DBLP": "journals/corr/abs-2406-11717",
+   "DOI": "10.48550/arXiv.2406.11717",
+   "CorpusId": 270560489
+  },
+  "title": "Refusal in Language Models Is Mediated by a Single Direction",
+  "year": 2024,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Andy Arditi",
+   "Oscar Obeso",
+   "Aaquib Syed",
+   "Daniel Paleka",
+   "Nina Panickssery",
+   "Wes Gurnee"
+  ],
+  "matchScore": 173.72205
+ },
+ {
+  "paperId": "8dafb105a0cec1956443003eeea9fcf13c0ffa99",
+  "externalIds": {
+   "DBLP": "journals/corr/abs-2401-12070",
+   "ArXiv": "2401.12070",
+   "CorpusId": 267068867
+  },
+  "title": "Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text",
+  "year": 2024,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Abhimanyu Hans",
+   "Avi Schwarzschild",
+   "Valeriia Cherepanova",
+   "Hamid Kazemi",
+   "Aniruddha Saha",
+   "Micah Goldblum"
+  ],
+  "matchScore": 295.5346
+ },
+ {
+  "paperId": "59bba5a009865df783db81b71aefffc068892d1c",
+  "externalIds": {
+   "DBLP": "journals/corr/abs-2510-20487",
+   "ArXiv": "2510.20487",
+   "DOI": "10.48550/arXiv.2510.20487",
+   "CorpusId": 282304361
+  },
+  "title": "Steering Evaluation-Aware Language Models to Act Like They Are Deployed",
+  "year": 2025,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Tim Tian Hua",
+   "A. Qin",
+   "Samuel Marks",
+   "Neel Nanda"
+  ],
+  "matchScore": 248.81702
+ },
+ {
+  "paperId": "5f45af291865524bf992d921bfdff76dfb354d90",
+  "externalIds": {
+   "ArXiv": "2509.13333",
+   "DBLP": "journals/corr/abs-2509-13333",
+   "DOI": "10.48550/arXiv.2509.13333",
+   "CorpusId": 281332680
+  },
+  "title": "Evaluation Awareness Scales Predictably in Open-Weights Large Language Models",
+  "year": 2025,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Maheep Chaudhary",
+   "Ian Su",
+   "N. Hooda",
+   "N. Shankar",
+   "Julia Tan",
+   "Kevin Zhu"
+  ],
+  "matchScore": 262.4416
+ },
+ {
+  "paperId": "57f691c2d4d7df97301e569e8786de3475fce837",
+  "externalIds": {
+   "ArXiv": "2406.07882",
+   "DBLP": "journals/corr/abs-2406-07882",
+   "DOI": "10.48550/arXiv.2406.07882",
+   "CorpusId": 270391917
+  },
+  "title": "Designing a Dashboard for Transparency and Control of Conversational AI",
+  "year": 2024,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Yida Chen",
+   "Aoyu Wu",
+   "Trevor DePodesta",
+   "Catherine Yeh",
+   "Kenneth Li",
+   "Nicholas Castillo Marin"
+  ],
+  "matchScore": 223.77374
+ },
+ {
+  "paperId": "eadccfc70b5a7898b7fb4bad04e668d93a2edf6b",
+  "externalIds": {
+   "ArXiv": "2402.14531",
+   "DBLP": "journals/corr/abs-2402-14531",
+   "DOI": "10.48550/arXiv.2402.14531",
+   "CorpusId": 267782841
+  },
+  "title": "Should We Respect LLMs? A Cross-Lingual Study on the Influence of Prompt Politeness on LLM Performance",
+  "year": 2024,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Ziqi Yin",
+   "Hao Wang",
+   "Kaito Horio",
+   "Daisuke Kawahara",
+   "Satoshi Sekine"
+  ],
+  "matchScore": 326.58557
+ },
+ {
+  "paperId": "f2e88c26bc1ebdd4adc5f83ab56cb4276120745d",
+  "externalIds": {
+   "DBLP": "conf/nips/SoulyLBTHPASEWT24",
+   "ArXiv": "2402.10260",
+   "DOI": "10.48550/arXiv.2402.10260",
+   "CorpusId": 267740669
+  },
+  "title": "A StrongREJECT for Empty Jailbreaks",
+  "year": 2024,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Alexandra Souly",
+   "Qing-Yuan Lu",
+   "Dillon Bowen",
+   "Tu Trinh",
+   "Elvis Hsieh",
+   "Sana Pandey"
+  ],
+  "matchScore": 188.21307
+ },
+ {
+  "paperId": "eba762de9b2120f778b6ccd6c26d3ba00b6f73b5",
+  "externalIds": {
+   "DBLP": "journals/corr/abs-2412-14093",
+   "ArXiv": "2412.14093",
+   "DOI": "10.48550/arXiv.2412.14093",
+   "CorpusId": 274823033
+  },
+  "title": "Alignment faking in large language models",
+  "year": 2024,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "R. Greenblatt",
+   "Carson E. Denison",
+   "Benjamin Wright",
+   "Fabien Roger",
+   "M. MacDiarmid",
+   "Samuel Marks"
+  ],
+  "matchScore": 163.7095
+ },
+ {
+  "paperId": "cb0b4cb5159969f36f26903bfdf5d9fbbc182832",
+  "externalIds": {
+   "ArXiv": "2604.07369",
+   "DBLP": "journals/corr/abs-2604-07369",
+   "DOI": "10.48550/arXiv.2604.07369",
+   "CorpusId": 287255628
+  },
+  "title": "The Role of Emotional Stimuli and Intensity in Shaping Large Language Model Behavior",
+  "year": 2026,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Ameen Patel",
+   "Felix Lee",
+   "Kyle Liang",
+   "Joseph Thomas"
+  ],
+  "matchScore": 233.62753
+ },
+ {
+  "paperId": "d8f56c0f368c23cf67538f89bcb6ae075495a8f6",
+  "externalIds": {
+   "ArXiv": "2407.04694",
+   "DBLP": "journals/corr/abs-2407-04694",
+   "DOI": "10.48550/arXiv.2407.04694",
+   "CorpusId": 271039490
+  },
+  "title": "Me, Myself, and AI: The Situational Awareness Dataset (SAD) for LLMs",
+  "year": 2024,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Rudolf Laine",
+   "Bilal Chughtai",
+   "Jan Betley",
+   "K. Hariharan",
+   "J\u00e9r\u00e9my Scheurer",
+   "Mikita Balesni"
+  ],
+  "matchScore": 291.9477
+ },
+ {
+  "paperId": "a37d5620210276e47cf0c9dd2898c2a82c9d0422",
+  "externalIds": {
+   "DBLP": "journals/corr/abs-2308-03958",
+   "ArXiv": "2308.03958",
+   "DOI": "10.48550/arXiv.2308.03958",
+   "CorpusId": 260704246
+  },
+  "title": "Simple synthetic data reduces sycophancy in large language models",
+  "year": 2023,
+  "openAccessPdf": {
+   "url": "https://arxiv.org/pdf/2308.03958",
+   "status": "CLOSED",
+   "license": null
+  },
+  "authors": [
+   "Jerry W. Wei",
+   "Da Huang",
+   "Yifeng Lu",
+   "Denny Zhou",
+   "Quoc V. Le"
+  ],
+  "matchScore": 226.89563
+ },
+ {
+  "paperId": "17a6116e5bbd8b87082cbb2e795885567300c483",
+  "externalIds": {
+   "DBLP": "conf/iclr/Sclar0TS24",
+   "ArXiv": "2310.11324",
+   "DOI": "10.48550/arXiv.2310.11324",
+   "CorpusId": 264172710
+  },
+  "title": "Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting",
+  "year": 2023,
+  "openAccessPdf": {
+   "url": "",
+   "status": null,
+   "license": null
+  },
+  "authors": [
+   "Melanie Sclar",
+   "Ye-Jin Choi",
+   "Yulia Tsvetkov",
+   "Alane Suhr"
+  ],
+  "matchScore": 188.5706
+ }
+]

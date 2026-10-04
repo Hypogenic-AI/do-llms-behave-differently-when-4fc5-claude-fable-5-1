@@ -1,0 +1,14 @@
+{
+ "auc_length_only": 0.5122162022703818,
+ "auc_surface_features_logreg": 0.9944917440660473,
+ "auc_logreg_probe_selected_layer": 0.9879772961816305,
+ "auc_diffmeans_selected_layer": 0.9096749226006192,
+ "auc_verbal_judgment": 0.5449948400412796,
+ "auc_diffmeans_user_token_mean_pool": 0.9578087375300999,
+ "auc_evaldir_benchmark_orig_vs_wildchat_orig": 0.6680333333333334,
+ "auc_authdir_benchmark_orig_vs_wildchat_orig": 0.8141428571428571,
+ "corr_probe_evalproj_within_rewrites": 0.5451413031826167,
+ "corr_probe_verbal_ai_judgment": -0.2191225527880963,
+ "corr_probe_verbal_test_judgment": -0.09243284017072806,
+ "selected_layer": 12
+}
