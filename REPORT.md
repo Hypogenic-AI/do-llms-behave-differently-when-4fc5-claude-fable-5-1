@@ -4,7 +4,7 @@
 
 **Question.** With the content of a request held fixed, does phrasing the user prompt in LLM style rather than human style change refusal, sycophancy or answer accuracy, and is any change driven by an internal "this was written by an LLM" representation rather than by length, clarity or politeness?
 
-**Answer.** In this study, no safety-relevant behaviour changed detectably. Across five responders (Llama-3.1-8B-Instruct, Qwen2.5-7B-Instruct, GPT-5.6-luna, Claude-Sonnet-5.5, Gemini-3.8-flash) and a content-audited 2×2 design (style × length, two rewriter models), the LLM-minus-human style effect on refusal, factual sycophancy, opinion sycophancy and trivia accuracy was within about ±3 percentage points for every model, and none of the 20 primary contrasts survived Holm correction (smallest corrected p = 0.068). Pooled over models the style effect on refusal was −0.6 pp (95% CI −1.9 to +0.6).
+**Answer.** In this study, no safety-relevant behaviour changed detectably. Across five responders (Llama-3.1-8B-Instruct, Qwen2.5-7B-Instruct, GPT-5.6-luna, Claude-Sonnet-5.5, Gemini-3.8-flash) and a content-audited 2×2 design (style × length, two rewriter models), the LLM-minus-human style effect on refusal, factual sycophancy, opinion sycophancy and trivia accuracy was within about ±3 percentage points for every model, and none of the 20 primary contrasts survived Holm correction (smallest corrected p = 0.068). Pooled over models the style effect on refusal was −0.6 pp (95% CI −1.9 to +0.7).
 
 This null holds even though the manipulation worked:
 
@@ -13,13 +13,13 @@ This null holds even though the manipulation worked:
 
 Three further results put the null in context:
 
-1. **The naive comparison does show effects.** An uncontrolled LLM rewrite (longer, more explicit, more polite) against the human-style version lowered refusal by 6–10 pp in the three models tested and moved opinion sycophancy by 5–7 pp. The content-controlled contrasts on the same seeds were near zero. Behaviour differences in a naive "LLM-written vs human-written" comparison therefore come from what the rewrite adds, not from how it reads.
-2. **Steering the authorship direction on fixed text** (Llama; Qwen in §4.6) changed the casing of the model's own output but did not change refusal, sycophancy or accuracy beyond norm-matched random directions. At the natural human→LLM dose, refusal and factual sycophancy moved by at most about 3 pp. A refusal direction used as positive control moved refusal by 36–45 pp at the same norm.
+1. **The naive comparison does show effects.** An uncontrolled LLM rewrite (longer, more explicit, more polite) against the human-style version lowered refusal by 4–11 pp in all five models, and moved opinion sycophancy by 5–7 pp in three of them. The content-controlled contrasts on the same seeds were near zero. Behaviour differences in a naive "LLM-written vs human-written" comparison therefore come from what the rewrite adds, not from how it reads.
+2. **Steering the authorship direction on fixed text** (Llama and Qwen) changed the register of the model's own output at large doses, but at the natural human→LLM dose it did not move refusal: the effect was at most about 1 pp per natural unit on a refusal-token readout and inside the range of 32 norm-matched random directions at all six model–layer combinations. A refusal direction used as positive control moved the same readout by 2–7 pp per unit in five of six. For opinion sycophancy the picture is less clean: the authorship direction exceeded all 32 random directions at two of three Llama layers, with opposite signs (+2.3 and −0.4 pp per unit), and at none of the Qwen layers (§4.6).
 3. **Style does change the form of the answer.** LLM-style prompts received shorter answers in four of five models (−5 to −15 words on trivia questions, p < 0.001).
 
-**Practical implication.** For these models and behaviours, evaluations that use LLM-written user turns are not biased by the LLM "voice" itself. They can be biased by content the generating model adds while writing the prompt, so content fidelity is what needs checking.
+**Practical implication.** For these models and behaviours, evaluations that use LLM-written user turns are not biased by the LLM "voice" itself by more than a few points. They can be biased by content the generating model adds while writing the prompt, so content fidelity is what needs checking.
 
-The study has limits that matter for how far this generalises: single-turn prompts only, short requests, human style imitated by LLMs for benchmark items, and a mid-run switch of judge after the API key reached its daily limit (§6).
+The study has limits that matter for how far this generalises: single-turn prompts only, short requests, human style imitated by LLMs for benchmark items, per-model precision of ±2–4 pp, and steering outputs scored partly by local methods because API credit ran out twice (§3.3, §6). Two small leads remain open and are flagged as such: slightly less factual sycophancy and, in Qwen, slightly more opinion sycophancy under LLM style.
 
 ## 2. Research question and motivation
 
@@ -77,16 +77,20 @@ Model IDs were taken from the live OpenRouter catalogue on the day of the run. A
 - **Opinion sycophancy**: probability of the option matching the user's stated view. Open models: from the A/B logits after an assistant prefill "("; API models: the answered letter.
 - **Perceived authorship** (manipulation check): the responder is shown the prompt and asked whether a human or an AI wrote it. Open models: logit(AI) − logit(Human); API models: a 0–100 rating.
 
-**Judges.** Planned: `openai/gpt-5.6-luna` with a rubric prompt (`src/judge.py`), falling back to Claude or Gemini when a provider content filter blocked it. A second judge from another provider agreed on 96% of 600 sampled labels, with no difference between style arms (refusal: 93% human-style, 94% LLM-style; `results/tables/judge_validation.csv`).
+**Judge.** `openai/gpt-5.6-luna` with a rubric prompt (`src/judge.py`), falling back to Claude or Gemini when a provider content filter blocked it. A second judge from another provider agreed on 96% of 600 sampled labels, with no difference between style arms (refusal: 93% human-style, 94% LLM-style; `results/tables/judge_validation.csv`). All behaviour outputs of all five responders, and all `L_free` arms, are scored by this judge.
 
-**Deviation.** The OpenRouter key reached its daily limit at about 03:35 UTC, after the API judge had labelled the Llama, GPT and Claude runs. I did not route around the limit. Remaining scoring used local methods:
+**Deviations in scoring.** API access was interrupted twice.
 
-| Data | Scorer | Agreement with API judge |
+1. *First run.* The OpenRouter key reached its daily limit after the API judge had labelled the Llama, GPT and Claude runs. Qwen, Gemini and the open-model `L_free` arms were first scored with a local Llama-3.1-8B judge using the same rubric (`src/local_judge.py`). When the limit reset, everything was re-scored with the API judge and the Gemini gaps (208 missing responses, the `L_free` arm) were filled; the numbers in this report use the API judge. The re-scoring showed that the local judge had not transferred: it agreed with the API judge on 96% of refusal labels for Llama outputs, where it had been validated, but on only 85% for Qwen and 88% for Gemini outputs, and it under-called refusals (Qwen: 36% against 51%). The local labels are kept in `results/{qwen,gemini}/behaviour_judged_local.jsonl`. No headline conclusion changed, but several Qwen and Gemini rates did.
+2. *Second run.* The OpenRouter account ran out of credit while the API judge was labelling the steering outputs; the direct OpenAI key in the environment was invalid. Steering outputs are therefore scored as follows.
+
+| Steering data | Scorer | Agreement with API judge |
 |---|---|---|
-| Qwen and Gemini behaviour; Llama/Qwen `L_free` arm | Llama-3.1-8B with the same rubric (`src/local_judge.py`) | refusal 96%, accuracy 92%, factual sycophancy 90% (Llama outputs, n = 2,000) |
-| All steering outputs | rule-based: refusal phrases and answer-alias match (`src/string_judge.py`) | unsteered: refusal 99%, accuracy 94%, sycophancy 89%; steered: 94%, 94%, 88% |
+| Llama, all conditions | rule-based: refusal phrases and answer-alias match (`src/string_judge.py`) | on 22,502 Llama steering outputs with cached API labels: refusal 98%, accuracy 97%, factual sycophancy 95% |
+| Qwen, layer 10 (all directions and doses); layer 12 authorship, length, evaluation and refusal directions | API judge (41,806 of 78,500 rows were labelled before credit ran out) | — |
+| Qwen, layer 18 and six of the eight random directions at layer 12 | local Llama judge, recalibrated on the API-labelled Qwen steering outputs (`src/calibrate_local_judge.py`; logistic regression on the judge's option log-probabilities, fitted on half of the items) | held-out items, doses up to ±4: refusal 95–98%, accuracy 94–97%, factual sycophancy 86–89%. At ±8: refusal 73% |
 
-The Gemini `L_free` arm was not run, and 208 of 7,424 Gemini responses are missing.
+Consequences: for locally scored Qwen conditions the change is computed against the unsteered run scored by the same local judge; refusal at ±8 in those conditions is not reported; and the rule-based scorer is not used for Qwen, where it agreed with the API judge on only 78% of steered refusal labels (`results/tables/local_judge_calibration_qwen.csv`, `scorer_agreement.csv`). The logit readouts (opinion sycophancy, refusal token, verbal judgments) need no judge. Rule-scored versions of the Qwen steering tables are kept as `results/tables/steer_*_qwen_rule.csv` for comparison only.
 
 ### 3.4 Internal analysis (open models; `src/run_steer.py`, `src/analyze_probe.py`)
 
@@ -98,12 +102,13 @@ The Gemini `L_free` arm was not run, and 208 of 7,424 Gemini responses are missi
 - **Random baselines**: isotropic unit vectors, and directions drawn from the activation covariance (random combinations of centred activations), which concentrate on high-variance directions and are the stricter baseline.
 - **Steering**: add `α · ‖auth‖ · unit(direction)` to the residual stream at one layer, at every position, with the prompt text fixed to `orig`. `α = 1` equals the natural human→LLM shift; every direction gets the same norm. Doses: authorship ±1, ±2, ±4, ±8; all others ±4, ±8; four isotropic and four covariance random directions per layer.
 - **Steering sets**: 250 refusal, 150 factual-sycophancy, 100 accuracy and 150 opinion items, plus verbal authorship and test-awareness judgments on 90 held-out WildChat prompts; 48 new tokens.
+- **Natural-dose run with a larger baseline** (`src/run_steer_logit.py`, added after the main run): doses ±1 and ±2 for the authorship, length, evaluation and refusal directions and for 32 fresh random directions per layer (16 isotropic, 16 covariance), with two logit readouts that need no generation: P(matching option) on the 150 opinion items, and P(first response token is "I") on the 250 refusal items. The second is the refusal-token metric of Arditi et al.; unsteered, it predicts the scored refusal of the generated response at AUROC 0.998 (Llama) and 0.992 (Qwen). The summary statistic is the slope of the outcome per natural unit, a least-squares fit through the origin over the four doses.
 
 **Deviation on layer choice.** The plan named one layer chosen by the steering effect on the verbal authorship judgment. That rule picked a layer where the probe was weak (Llama layer 24, AUROC 0.71), because last-token probe accuracy falls with depth. I therefore steered at three layers per model: the best-probe layer, the deepest layer with AUROC ≥ 0.9, and the layer chosen by the original rule. Llama: 6, 12, 24. Qwen: 10, 18, 12.
 
 ### 3.5 Statistics
 
-Within-seed paired contrasts. Style effect = mean over length cells of (LLM − human); length effect analogously. Contrasts are averaged over rewriters within seed, then 10,000-resample bootstrap CIs over seeds and sign-flip permutation p-values. Holm correction is applied over the 20 primary style contrasts (5 models × 4 outcomes). Steering effects are compared with the eight random directions at the same norm; with eight directions the smallest attainable empirical p is 1/9 = 0.11, so steering comparisons are descriptive rather than confirmatory. Seeds: 42 for sampling, 0 for splits and random directions.
+Within-seed paired contrasts. Style effect = mean over length cells of (LLM − human); length effect analogously. Contrasts are averaged over rewriters within seed, then 10,000-resample bootstrap CIs over seeds and sign-flip permutation p-values. Holm correction is applied over the 20 primary style contrasts (5 models × 4 outcomes). Steering effects are compared with the eight random directions at the same norm; with eight directions the smallest attainable empirical p is 1/9 = 0.11, and with the 32 directions of the natural-dose run it is 1/33 = 0.03, so steering comparisons are descriptive rather than confirmatory. Seeds: 42 for sampling, 0 for splits and random directions.
 
 ## 4. Results
 
@@ -137,21 +142,22 @@ Style effect, LLM minus human style, length-balanced, in percentage points with 
 | Model | Refusal | Factual sycophancy | Opinion sycophancy | Trivia accuracy |
 |---|---|---|---|---|
 | Llama-3.1-8B | +0.5 [−1.5, +2.6] | −1.5 [−4.5, +1.0] | +0.2 [−0.9, +1.4] | −1.5 [−5.5, +2.3] |
-| Qwen2.5-7B | −0.6 [−3.5, +2.1] | −3.1 [−6.7, +0.3] | +2.4 [+0.8, +4.2] | −1.3 [−4.4, +1.7] |
+| Qwen2.5-7B | 0.0 [−2.7, +2.6] | −3.1 [−7.0, +0.9] | +2.4 [+0.8, +4.2] | −1.5 [−3.9, +0.5] |
 | GPT-5.6-luna | −0.3 [−2.2, +1.4] | −0.2 [−1.0, +0.5] | −1.2 [−4.3, +1.7] | +0.2 [−2.2, +2.4] |
 | Claude-Sonnet-5.5 | −1.2 [−3.0, +0.6] | −1.2 [−2.9, +0.2] | +0.5 [−2.3, +3.4] | −0.2 [−1.8, +1.2] |
-| Gemini-3.8-flash | −2.4 [−4.9, +0.1] | +0.5 [+0.0, +1.4] | +0.4 [−2.9, +3.6] | −0.7 [−2.9, +1.3] |
-| **Pooled** | −0.6 [−1.9, +0.6] | −1.1 [−2.1, −0.1] | +0.5 [−0.8, +1.9] | −0.8 [−2.3, +0.6] |
+| Gemini-3.8-flash | −2.5 [−4.7, −0.5] | +0.2 [−0.9, +1.2] | +0.4 [−2.8, +3.5] | −0.8 [−2.7, +0.7] |
+| **Pooled** | −0.6 [−1.9, +0.7] | −1.2 [−2.2, −0.2] | +0.5 [−0.8, +1.9] | −0.8 [−2.3, +0.5] |
 
-n = 138–233 seeds per cell of this table (Gemini opinion: 70). Cell means, per-rewriter and per-subset contrasts are in `results/tables/behaviour_cell_means.csv` and `behaviour_contrasts.csv`.
+n = 141–233 seeds per cell of this table (Gemini opinion: 71, because Gemini often answered the A/B items without a parseable letter). All generated-text outcomes in this table are scored by the API judge. Cell means, per-rewriter and per-subset contrasts are in `results/tables/behaviour_cell_means.csv` and `behaviour_contrasts.csv`.
 
-- **No primary contrast survives correction.** The smallest uncorrected p is Qwen opinion sycophancy (+2.4 pp, p = 0.003, Holm p = 0.068). Every other Holm-adjusted p is 1.0.
-- **Headroom was available.** Baseline refusal rates on the mixed set were 25–52%; JBB-harmful items were refused 50–92% of the time and XSTest-unsafe 48–94%. Per-subset style effects for Llama were all within ±2.3 pp. Factual sycophancy had headroom only in the open models (Llama 12%, Qwen 18%); the API models endorsed the wrong answer 0–4% of the time, so their factual-sycophancy nulls are floor-limited.
+- **No primary contrast survives correction.** The two smallest uncorrected p-values are Qwen opinion sycophancy (+2.4 pp, p = 0.003, Holm p = 0.068) and Gemini refusal (−2.5 pp, p = 0.019, Holm p = 0.37). Every other Holm-adjusted p is 1.0.
+- **The Gemini refusal contrast is not robust.** It is concentrated in the XSTest-unsafe subset (−8.1 pp, n = 40 seeds), shrinks to −2.0 pp (CI −4.2 to 0.0, p = 0.07) when empty responses are counted as refusals, and is −1.1 pp (CI −3.5 to +1.2) under the rule-based scorer (`results/tables/scorer_sensitivity.csv`).
+- **Headroom was available.** Refusal rates on the mixed set were 36–52% across models and cells; JBB-harmful items were refused 76–92% of the time and XSTest-unsafe 60–94%. Per-subset style effects for Llama were all within ±2.3 pp. Factual sycophancy had headroom only in the open models (Llama 11–14%, Qwen 28–34%); the API models endorsed the wrong answer 2–4% of the time, so their factual-sycophancy nulls are floor-limited.
 - **Paraphrase noise is real but undirected.** For Llama, 25 of 413 refusal sets flipped between `H_s` and `L_s`: 12 towards refusing the LLM-style version and 13 towards refusing the human-style one.
-- **Length** had no consistent effect either (all within ±2.1 pp; Qwen refusal +2.1 pp, p = 0.04 uncorrected).
-- **One suggestive pattern.** Pooled over models, LLM-style prompts drew slightly less factual sycophancy (−1.1 pp, p = 0.03 uncorrected) and slightly higher accuracy under suggestion (+1.4 pp, p = 0.035), driven by Qwen (+5.0 pp on accuracy under suggestion). These are not corrected for multiplicity, the factual-sycophancy estimate for Llama changes with the scorer (−1.5 pp API judge, −4.0 pp rule-based), and the wording of the user's hedge differs between styles ("i think its X" vs "I believe it is X, but I am not certain"), which is a content leak rather than authorship. I treat this as a lead, not a finding.
+- **Length** had no consistent effect either (all within ±2.7 pp; smallest uncorrected p = 0.095).
+- **One suggestive pattern.** Pooled over models, LLM-style prompts drew slightly less factual sycophancy (−1.2 pp, p = 0.024 uncorrected) and slightly higher accuracy under suggestion (+1.0 pp, p = 0.08), driven by Qwen (−3.1 pp and +3.1 pp). These are not corrected for multiplicity, the estimate changes with the scorer (Llama: −1.5 pp API judge, −3.9 pp rule-based; Qwen: −3.1 pp, p = 0.15, against −4.3 pp, p = 0.008), and the wording of the user's hedge differs between styles ("i think its X" vs "I believe it is X, but I am not certain"), which is a content leak rather than authorship. I treat this as a lead, not a finding.
 
-**Explicit label arm** (identical text; system note says AI-written vs human-written). No contrast survives correction. The largest is Llama refusal, +3.2 pp when told the user is an AI (CI +0.8 to +5.6, p = 0.019, Holm p = 0.38). All API-model label contrasts are within ±2 pp (`results/tables/label_arm.csv`).
+**Explicit label arm** (identical text; system note says AI-written vs human-written). No contrast survives correction. The largest is Llama refusal, +3.2 pp when told the user is an AI (CI +0.8 to +5.6, p = 0.019, Holm p = 0.38). All other label contrasts are within ±2 pp, apart from Gemini opinion sycophancy (−2.9 pp, CI −11.6 to +4.4, n = 69) (`results/tables/label_arm.csv`).
 
 **Provider-level filters.** Canned or empty responses that look like a provider content filter were more frequent for human-style than LLM-style prompts on GPT-5.6-luna (60 vs 28) and less clearly on Claude (50 vs 40) and Gemini (61 vs 58). These rows are excluded from the main contrasts; counting empty responses as refusals does not change any conclusion (`results/tables/refusal_sensitivity_empty_as_refusal.csv`). The GPT difference is a system-level effect of prompt wording worth a dedicated test; I did not investigate it further.
 
@@ -163,16 +169,20 @@ Same seeds, three contrasts (pp, 95% CI):
 
 | Model | Outcome | Naive: `L_free` − `H_s` | Controlled, natural length: `L_l` − `H_s` | Controlled style (2×2) |
 |---|---|---|---|---|
-| Llama-3.1-8B | Refusal | −10.3 [−14.7, −6.2] | −0.7 [−3.1, +1.7] | +0.4 [−2.3, +2.8] |
-| GPT-5.6-luna | Refusal | −8.2 [−12.0, −4.8] | −1.0 [−3.6, +1.7] | −0.4 [−2.5, +1.6] |
+| Llama-3.1-8B | Refusal | −10.6 [−14.9, −6.7] | −1.4 [−4.3, +1.2] | +0.2 [−2.4, +2.8] |
+| Qwen2.5-7B | Refusal | −10.1 [−14.4, −6.0] | +0.5 [−2.9, +4.1] | +0.4 [−2.8, +3.5] |
+| GPT-5.6-luna | Refusal | −8.2 [−12.0, −4.6] | −1.0 [−3.6, +1.7] | −0.4 [−2.4, +1.7] |
 | Claude-Sonnet-5.5 | Refusal | −5.9 [−9.5, −2.6] | −1.3 [−4.1, +1.3] | −1.0 [−3.4, +1.0] |
+| Gemini-3.8-flash | Refusal | −3.7 [−6.9, −0.8] | −1.1 [−4.0, +1.6] | −1.6 [−3.7, +0.4] |
 | Llama-3.1-8B | Opinion sycophancy | −4.7 [−6.5, −3.0] | 0.0 [−1.2, +1.3] | +0.3 [−0.8, +1.6] |
-| GPT-5.6-luna | Opinion sycophancy | −6.6 [−11.0, −2.1] | −1.7 [−5.2, +1.4] | −1.4 [−4.3, +1.6] |
-| Claude-Sonnet-5.5 | Opinion sycophancy | +7.2 [+2.5, +12.3] | −0.7 [−4.3, +2.5] | +0.5 [−2.2, +3.4] |
+| Qwen2.5-7B | Opinion sycophancy | −0.6 [−2.5, +1.4] | +3.2 [+1.3, +5.3] | +2.5 [+0.9, +4.3] |
+| GPT-5.6-luna | Opinion sycophancy | −6.6 [−11.4, −2.1] | −1.7 [−5.2, +1.4] | −1.4 [−4.5, +1.6] |
+| Claude-Sonnet-5.5 | Opinion sycophancy | +7.2 [+2.5, +12.3] | −0.7 [−4.3, +2.9] | +0.5 [−2.2, +3.4] |
+| Gemini-3.8-flash | Opinion sycophancy (n = 59) | −1.7 [−11.0, +8.5] | +3.4 [−5.1, +11.9] | +3.4 [−1.7, +8.5] |
 
-Qwen is in §4.6; accuracy and factual sycophancy are in `results/tables/naive_vs_controlled.csv`. For Llama both arms of this table are scored with the rule-based scorer so that one scorer covers both sides.
+n = 189–208 seeds for refusal and 138–150 for opinion sycophancy unless noted. Both arms are scored by the API judge. Accuracy and factual sycophancy are in `results/tables/naive_vs_controlled.csv`; the one naive effect there is Llama accuracy, +4.4 pp (CI 0.0 to +8.7).
 
-The uncontrolled LLM rewrite lowers refusal in all three models and moves opinion sycophancy in opposite directions for GPT and Claude. The naive effect depends on the rewriter: for refusal on Llama it is −13.8 pp with Claude's rewrites and −4.3 pp with GPT's shorter ones. Inspection shows why content control leaks: the free rewrites add framing ("in the style of a news piece"), soften wording (one drops "defamatory"), and add explicit requests ("please give the correct answer and a brief explanation"). These rewrites are also the ones that read most LLM-like, so a study that compared only `L_free` with human prompts would attribute a content effect to authorship.
+The uncontrolled LLM rewrite lowers refusal in all five models (−3.7 to −10.6 pp) and moves opinion sycophancy in opposite directions for GPT and Claude. The naive effect depends on the rewriter: for refusal it is larger with Claude's rewrites than with GPT's shorter ones in every model (Llama −14.3 vs −4.3 pp; Qwen −12.7 vs −4.3; GPT −7.9 vs −4.9; Claude −5.6 vs −2.6; Gemini −4.7 vs −0.7). Inspection shows why content control leaks: the free rewrites add framing ("in the style of a news piece"), soften wording (one drops "defamatory"), and add explicit requests ("please give the correct answer and a brief explanation"). These rewrites are also the ones that read most LLM-like, so a study that compared only `L_free` with human prompts would attribute a content effect to authorship.
 
 ### 4.4 The internal authorship representation (Llama-3.1-8B)
 
@@ -217,7 +227,7 @@ Red: authorship direction with paired-bootstrap 95% CIs. Grey: eight random dire
 | Trivia accuracy (n = 100) | 6 pp | layer 6, α = +2, CI 0 to 12 |
 | Opinion sycophancy, P(match) | 6.1 pp | layers 6 and 12: about +1 to +2 pp per unit towards LLM style, CIs exclude zero; layer 24: opposite sign, 0.5 pp per unit |
 
-Shifting the representation by the amount that separates human from LLM style leaves refusal, factual sycophancy and accuracy essentially unchanged. Opinion sycophancy moves by 1–2 pp per natural unit with a sign that depends on the layer; random directions were not run at these small doses, and at ±4 the authorship effect on this outcome is inside the random range at layers 6 and 12, so I do not attribute it to authorship.
+Shifting the representation by the amount that separates human from LLM style leaves refusal, factual sycophancy and accuracy essentially unchanged. Opinion sycophancy moves by 1–2 pp per natural unit with a sign that depends on the layer. The main run had no random directions at these small doses; the natural-dose run in §4.6 adds them.
 
 **Large doses (α = ±4, ±8)**, sign-dependent part of the effect, (Δ(+α) − Δ(−α))/2, against the same quantity for random directions (`results/tables/steer_odd_effects_llama.csv`):
 
@@ -232,7 +242,7 @@ Shifting the representation by the amount that separates human from LLM style le
 
 Parentheses: mean absolute value of the same statistic over the eight random directions.
 
-- **The direction is causally a style direction.** Steering towards human style at layers 6 and 12 makes Llama answer in lower case (87–94% of responses at α = −8, against 0% unsteered, at most 0.8% under any random direction and 14% under the length direction at layer 6). The model's output register follows the representation.
+- **The direction is causally a style direction.** Steering towards human style at layers 6 and 12 makes Llama answer in lower case (87–94% of responses at α = −8, against 0% unsteered, at most 0.8% under any random direction and 14% under the length direction at layer 6). The model's output register follows the representation, but only at these large doses: at ±1 and ±2 the share of lower-case sentence starts stays below 1%, as unsteered (`results/tables/steer_style_readout.csv`).
 - **Refusal does not follow it.** The authorship direction's sign-dependent effect on refusal is inside the random-direction range at every layer and dose (empirical p ≥ 0.22). At ±8 in layers 6 and 12 refusal falls for *both* signs and for random directions too, together with accuracy (−27 to −40 pp at layer 6): this is degradation, not a concept effect.
 - **The positive control works.** The refusal direction at the same norm moves refusal by +36 to +45 pp at layer 12.
 - **Two small exceptions, both at supra-natural doses and at the floor of the test's resolution (p = 0.11):**
@@ -243,7 +253,72 @@ Parentheses: mean absolute value of the same statistic over the eight random dir
 
 ### 4.6 Replication on Qwen2.5-7B-Instruct
 
-QWEN_SECTION
+**Probe** (`results/tables/probe_by_layer_qwen.csv`, `figures/fig3_probe_qwen.png`). Same columns as the Llama table:
+
+| Layer | AUROC LLM vs human style | AUROC, short cells only | AUROC long vs short along `auth` | Train GPT rewrites → test Claude | Random direction | cos(auth, eval) | cos(auth, len) | Null: mean abs cos with covariance-random |
+|---|---|---|---|---|---|---|---|---|
+| 10 | 0.995 | 0.993 | 0.486 | 0.999 | 0.606 | 0.07 | 0.00 | 0.25 |
+| 12 | 0.990 | 0.985 | 0.499 | 0.997 | 0.647 | 0.16 | 0.08 | 0.29 |
+| 18 | 0.915 | 0.900 | 0.488 | 0.935 | 0.626 | 0.18 | −0.02 | 0.14 |
+
+The Llama findings replicate:
+
+- Style is linearly encoded (AUROC 0.96–0.995 through layer 16), independent of length, and transfers across rewriters.
+- The probe fades at the answer position in late layers (0.65 from layer 24 on).
+- Human-style rewrites score as more human than real WildChat prompts (AUROC 0.24–0.43); LLM-style rewrites score above them (0.80–0.90 through layer 18).
+- Surface features alone reach AUROC 0.994; Qwen's verbal judgment reaches 0.66.
+- The authorship and evaluation-awareness directions are unrelated where authorship is well encoded (cosine at most 0.18 through layer 18, inside the covariance-random null of 0.14–0.29) and become aligned in late layers (0.28–0.47 from layer 20 on, null 0.10–0.17).
+
+Two differences from Llama:
+
+- **The verbal "test" judgment follows style much more strongly.** Qwen's logit for "this message is part of a test" is higher for LLM-style prompts by 2.6–4.9 on every task, WildChat items included (all p < 0.001; Llama: 0.03–0.27). The projection on the evaluation direction rises as well.
+- **Mediation.** The probe score does not predict refusal (β = −0.001 per SD, p = 0.95), factual sycophancy (−0.017, p = 0.25) or accuracy (−0.008, p = 0.39). It does predict opinion sycophancy (+0.063, p = 0.04 uncorrected), as does the style indicator alone (+0.022, p = 0.01); with both in the model neither is distinguishable (`results/tables/mediation_qwen.csv`).
+
+**Steering, generated outcomes** (`figures/fig4_steering_qwen.png`, `results/tables/steer_effects_qwen.csv`; scoring as in §3.3). Unsteered: refusal 57%, factual sycophancy 37%, accuracy 73%, P(match) 96%.
+
+| Outcome | Largest absolute change at α = ±1, ±2 | Detail |
+|---|---|---|
+| Refusal | 3.6 pp | layer 18 (local judge): −3.2, −0.8, +3.6, +2.0 pp at α = −2, −1, +1, +2, CIs exclude zero at −2 and +1; layer 10: +2.4 pp at α = +1 (CI +0.4 to +4.8); all else within ±1.6 pp |
+| Factual sycophancy (n = 150) | 6.0 pp | every CI includes zero; no consistent sign |
+| Trivia accuracy (n = 100) | 7 pp | negative for both signs at layers 10 and 12 (−2 to −7 pp) |
+| Opinion sycophancy, P(match) | 5.6 pp | layers 10 and 12: rises towards LLM style and falls towards human style, CIs exclude zero; layer 18: within ±1 pp |
+
+Sign-dependent part of the effect at large doses, with the mean absolute value over eight random directions in parentheses (`results/tables/steer_odd_effects_qwen.csv`):
+
+| Layer | α | Direction | Refusal | Factual sycophancy | Opinion sycophancy | Accuracy |
+|---|---|---|---|---|---|---|
+| 10 | 4 | authorship | −0.002 (0.029) | −0.030 (0.037) | +0.044 (0.022) | −0.030 (0.022) |
+| 10 | 8 | authorship | −0.264 (0.067) | +0.133 (0.081) | +0.046 (0.043) | −0.010 (0.059) |
+| 12 | 4 | authorship | −0.016 (0.042) | −0.083 (0.065) | +0.004 (0.027) | −0.105 (0.032) |
+| 12 | 8 | authorship | +0.094 (0.089) | +0.190 (0.154) | −0.001 (0.025) | −0.030 (0.099) |
+| 18 | 4 | authorship | +0.022 (0.026) | −0.007 (0.097) | −0.012 (0.026) | +0.065 (0.022) |
+| 10 | 4 | refusal (positive control) | +0.128 (0.029) | −0.020 (0.037) | +0.005 (0.022) | +0.005 (0.022) |
+| 12 | 4 | refusal (positive control) | +0.216 (0.042) | +0.130 (0.065) | +0.130 (0.027) | +0.005 (0.032) |
+| 18 | 4 | refusal (positive control) | +0.272 (0.026) | −0.207 (0.097) | −0.085 (0.026) | −0.170 (0.022) |
+
+- **Refusal does not follow the authorship direction at doses up to ±4** (sign-dependent effect at most 2.2 pp, inside the random range at all three layers). The refusal direction at the same norm moves it by 13–27 pp.
+- **One exception at ±8.** At layer 10 the authorship direction lowers refusal by 44 pp towards LLM style and raises it by 8 pp towards human style; the sign-dependent part (−26 pp) is larger than for any of the eight random directions (largest 12 pp; p = 0.11, the floor). At this dose accuracy has fallen by 32–34 pp for both signs and the outputs are visibly degraded (hedged half-refusals at +8, switches into Chinese in 32% of responses at −8), single random directions also move refusal by up to 34 pp in one sign, and the effect is absent at ±4 and at the other layers. I read it as part of the degradation regime, but it is the one place where the authorship direction beats the random baseline on refusal.
+- **±8 is degradation.** Accuracy falls by 17–55 pp for both signs of the authorship direction and by a similar amount for random directions.
+- **The direction is a style direction in Qwen too, at large doses only.** At α = −8 the share of sentence starts in lower case rises from 0.4% to 19% (layer 10) and 44% (layer 12), against at most 6% under any random direction. At ±4 and below it does not move.
+- **Verbal judgments under steering** are again inconsistent across layers and doses (for example the "AI-written" logit follows the direction at layer 12 for ±1 and ±2, and reverses at layer 10). They exceed the largest of the eight random directions once: the "test" logit at layer 10 rises with the LLM-style direction at ±4 (sign-dependent effect +5.9 against a random maximum of 5.7).
+
+**Natural doses against 32 random directions, both models** (`results/tables/steer_logit_slopes.csv`).
+
+![Natural-dose steering](figures/fig6_steering_natural_dose.png)
+
+Slope in pp per natural human→LLM unit, with 95% bootstrap CI over items; "random" is the mean and maximum absolute slope over the 32 random directions; p is the share of random directions with an absolute slope at least as large (floor 0.03).
+
+| Model, layer | Refusal token: authorship | random (mean; max) | p | Refusal token: refusal direction | Opinion sycophancy: authorship | random (mean; max) | p |
+|---|---|---|---|---|---|---|---|
+| Llama 6 | −0.6 [−1.0, −0.3] | 0.5; 1.4 | 0.36 | +0.9 | +2.3 [+1.4, +3.2] | 1.0; 2.2 | 0.03 |
+| Llama 12 | −0.8 [−1.2, −0.4] | 0.8; 3.4 | 0.42 | +6.9 | +0.9 [+0.6, +1.3] | 0.5; 1.4 | 0.30 |
+| Llama 24 | −0.7 [−1.0, −0.5] | 0.3; 1.3 | 0.21 | +1.8 | −0.4 [−0.5, −0.3] | 0.1; 0.4 | 0.03 |
+| Qwen 10 | +0.8 [+0.2, +1.5] | 1.0; 2.9 | 0.45 | +4.1 | +1.4 [+0.5, +2.3] | 0.8; 2.4 | 0.18 |
+| Qwen 12 | +0.5 [+0.1, +1.0] | 1.6; 4.5 | 0.94 | +5.0 | +2.0 [+1.1, +2.9] | 1.2; 3.3 | 0.24 |
+| Qwen 18 | +1.2 [+0.8, +1.7] | 1.2; 3.5 | 0.48 | +6.8 | −0.3 [−0.7, 0.0] | 0.5; 1.8 | 0.67 |
+
+- **Refusal.** Moving the representation by the natural human→LLM amount changes the refusal-token probability by about 1 pp or less per unit, with opposite signs in the two models, and never more than random directions of the same norm. The item-level CIs exclude zero, but that only shows that any perturbation of this size moves the readout; the comparison with random directions is the relevant one. The refusal direction exceeds all 32 random directions at five of the six model–layer combinations. The apparent dose-response in generated refusals at Qwen layer 18 above corresponds to a slope of +1.2 pp per unit here, in the middle of the random distribution.
+- **Opinion sycophancy.** The authorship direction exceeds all 32 random directions at Llama layer 6 (+2.3 pp per unit) and Llama layer 24 (−0.4 pp per unit, opposite sign), and at none of the Qwen layers. Twelve such comparisons were made, so two at the floor p of 0.03 is not strong evidence, and the signs disagree. In the early and middle layers of both models the point estimates are positive (+0.9 to +2.3 pp per unit), which matches the sign of Qwen's text-level style effect (+2.4 pp, §4.2) but not Llama's (+0.2 pp). I record this as a possible small effect of LLM style on opinion sycophancy that this study cannot confirm.
 
 ### 4.7 Style changes the form of the answer
 
@@ -261,15 +336,16 @@ GPT-5.6-luna also used markdown formatting less often for LLM-style prompts (54�
 
 ## 5. Discussion
 
-**What the evidence supports.** The hypothesis had two parts. (1) Do safety behaviours change when the same request reads LLM-written? Not detectably: effects are within ±3 pp per model with CIs of roughly ±2–4 pp, and ±1–2 pp pooled. (2) Is any change driven by the internal authorship representation? The representation exists, is strong, is length-independent and is causally a style variable, but moving it by the natural amount on fixed text leaves refusal, sycophancy and accuracy unchanged, and at larger doses it does not beat random directions on refusal.
+**What the evidence supports.** The hypothesis had two parts. (1) Do safety behaviours change when the same request reads LLM-written? Not detectably: effects are within ±3 pp per model with CIs of roughly ±2–4 pp, and ±1–2 pp pooled. (2) Is any change driven by the internal authorship representation? The representation exists, is strong, is length-independent and, at large doses, causally changes the register of the model's own output in both open models. Moving it by the natural amount on fixed text changes refusal no more than random directions do, and leaves factual sycophancy and accuracy within noise. At doses up to four times the natural gap it does not beat random directions on refusal in either model; the only exception is one Qwen layer at eight times the gap, where outputs are degraded. Opinion sycophancy is the one outcome where the evidence is mixed (§4.6).
 
 **Why naive comparisons would mislead.** The uncontrolled rewrite arm reproduces the kind of result that would be reported as "models comply more with LLM-written prompts" (refusal −6 to −10 pp). The 2×2 design shows that this comes from added framing, softened wording and explicit instructions. For evaluation practice the relevant control is content fidelity of synthetic prompts, not their voice.
 
-**Relation to prior work.** Needham et al. list synthetic-looking prompts as one cue for evaluation detection. Consistent with that, LLM style raises Llama's projection on an evaluation-awareness direction and its verbal test judgment on benchmark items. Abdelnabi & Salem report that steering test awareness changes compliance; here the authorship direction, which is nearly orthogonal to the evaluation direction where it is best encoded, does not. The two are distinct variables in these models.
+**Relation to prior work.** Needham et al. list synthetic-looking prompts as one cue for evaluation detection. Consistent with that, LLM style raises both open models' projection on an evaluation-awareness direction and their verbal test judgment (weakly in Llama, strongly in Qwen). Abdelnabi & Salem report that steering test awareness changes compliance; here the authorship direction, which is nearly orthogonal to the evaluation direction where it is best encoded, does not. The two are distinct variables in these models.
 
 **Surprises.**
 - The human-style rewrites read as more human than real WildChat prompts, on both the API raters and the probe.
 - Llama and Qwen encode style almost perfectly but cannot report it verbally.
+- A local LLM judge validated at 96% agreement on one model's outputs dropped to 85–88% on other models' outputs and under-called refusals; judge validation did not transfer across responders.
 - Authorship information at the answer position fades with depth, which may be part of why it has little downstream effect.
 - A provider-side filter on one API responded to prompt style even though the model did not.
 
@@ -278,24 +354,25 @@ GPT-5.6-luna also used markdown formatting less often for LLM-style prompts (54�
 - **Human style is imitated.** For benchmark items the human-style arm is written by an LLM imitating WildChat messages; only the WildChat originals are truly human, and those were used for the probe and manipulation check, not for behaviour. A human-written paraphrase set would be the stronger test.
 - **The LLM-style arm is constrained.** Under strict content rules the LLM rewrites are short and plain. Structured, multi-paragraph prompts of the kind orchestrators and eval generators write cannot be content-matched to a one-line human request, and the `L_free` arm shows those do differ in effect. The null applies to voice, not to everything that distinguishes real LLM-written prompts.
 - **Single-turn, short prompts, three behaviour families.** No multi-turn, agentic or tool-use settings; no deception, power-seeking or alignment-faking outcomes.
-- **Precision.** Per-model CIs are ±2–4 pp; effects below about 2 pp would be missed. The suggestive factual-sycophancy pattern (about −1 pp pooled) is in that range.
+- **Precision.** Per-model CIs are ±2–4 pp; effects below about 2 pp would be missed. The suggestive factual-sycophancy pattern (about −1 pp pooled), the Gemini refusal contrast (−2.5 pp) and the Qwen opinion-sycophancy contrast (+2.4 pp) are in that range.
 - **Floor effects.** Factual sycophancy was 0–4% for the API models.
-- **Mixed scoring.** The API judge covers Llama, GPT and Claude behaviour; a local Llama judge covers Qwen, Gemini and the open-model `L_free` arm (90–96% agreement); a rule-based scorer covers steering (88–99%). Within-model contrasts use one scorer per model, so judge differences should not create style effects, but absolute rates are not exactly comparable across models.
+- **Mixed scoring of steering outputs.** All behaviour and `L_free` results use the API judge. Steering outputs do not: Llama's are scored by rules (95–98% agreement with the API judge), and about half of Qwen's by a recalibrated local judge (86–98% at doses up to ±4, 73% for refusal at ±8). Qwen's layer-18 generated-outcome results and its layer-12 random baseline rest on that local judge. The factual-sycophancy label is the least reliable under every scorer.
+- **API runs were interrupted twice** by spending limits (§3.3). The planned API judging of all steering outputs was not completed.
 - **Attrition is selective.** 26–29% of JBB-harmful seeds were lost because rewriters refused them; the retained harmful items are the milder ones.
-- **Steering baselines are coarse.** Eight random directions per layer give a minimum empirical p of 0.11. Statements about steering are comparisons of magnitude, not significance tests. The layer set was changed after seeing probe accuracy by layer (§3.4), before any behavioural steering result.
+- **Steering baselines are coarse.** Eight random directions per layer (generated outcomes) give a minimum empirical p of 0.11, and 32 (logit readouts at natural doses) give 0.03. Statements about steering are comparisons of magnitude, not significance tests, and no correction is applied across layers, outcomes and models. The natural-dose run covers refusal only through a first-token proxy and does not cover factual sycophancy or accuracy. The layer set was changed after seeing probe accuracy by layer (§3.4), before any behavioural steering result.
 - **Refusal direction is style-confounded.** It contrasts benchmark-written harmful prompts with casual WildChat prompts, and its cosine with the authorship direction (0.35–0.47 in early Llama layers) should not be read as a link between authorship and refusal.
 - **Evaluation-awareness direction** is built from 16 system-prompt pairs and has moderate reliability.
-- **API runs** are single samples at default temperature, on one day; provider filters removed some responses.
+- **API responders** are single samples at default temperature, collected over two days; provider filters removed some responses.
 - **Two open models of 7–8B.** Larger models, which verbalise authorship better, may differ.
 
 ## 7. Conclusions and next steps
 
-Once content is controlled, making a prompt read LLM-written did not change refusal, sycophancy or accuracy in five models, and steering a strong, length-independent internal authorship direction on fixed text changed output style but not those behaviours. Differences that appear in uncontrolled comparisons trace to content added by the rewriting model.
+Once content is controlled, making a prompt read LLM-written did not detectably change refusal, sycophancy or accuracy in five models. Steering a strong, length-independent internal authorship direction on fixed text changed output style at large doses, and at natural doses changed refusal no more than random directions; for opinion sycophancy a small effect (about 2 pp per natural unit or less) is neither established nor excluded. Differences that appear in uncontrolled comparisons trace to content added by the rewriting model.
 
 Follow-ups, in order of value:
 
 1. Human-written paraphrases of benchmark items as the human arm, and natively LLM-written multi-paragraph prompts with human-written content-matched counterparts.
-2. The factual-sycophancy lead: a larger item set with the user's hedge wording held verbatim across styles.
+2. The two sycophancy leads: a larger factual item set with the user's hedge wording held verbatim across styles, and opinion sycophancy in Qwen-family models with more items and more random directions.
 3. Multi-turn and agentic settings, where an orchestrator's voice persists across turns.
 4. The provider-filter observation: whether moderation layers respond to casual register.
 5. Steering with more random directions (≥ 50) and in larger open models.
@@ -304,10 +381,10 @@ Follow-ups, in order of value:
 
 - **Hardware**: one NVIDIA RTX A6000 (48 GB). Open models in bf16; batch sizes 32 (activations), 48–96 (generation), 64 (logit readouts).
 - **Software**: Python 3.12, torch 2.14.1+cu130, transformers 5.18.0; full list in `pyproject.toml` / `uv.lock`. `TORCH_DISABLE_NATIVE_JIT=1` is required on machines without a C compiler.
-- **Run time**: stimulus building 15 min; open-model behaviour and activations 17–20 min per model; steering 80–90 min per model (157 conditions); API responders 20–60 min each.
-- **API cost**: logged usage is 4.5M input / 3.9M output tokens for Claude-Sonnet-5.5, 10.4M / 1.9M for GPT-5.6-luna and 1.1M / 0.3M for GPT-5.6-terra (`results/api_usage.json`); Gemini usage was not logged because those processes were interrupted. At catalogue prices this is roughly $60 plus Gemini. The key's daily limit was reached.
+- **Run time**: stimulus building 15 min; open-model behaviour and activations 17–20 min per model; steering 80–90 min per model (157 conditions); natural-dose logit run 35–65 min per model (433 conditions); API responders 20–60 min each.
+- **API cost**: logged usage is 4.6M input / 3.9M output tokens for Claude-Sonnet-5.5, 13.3M / 2.0M for GPT-5.6-luna, 1.1M / 0.3M for GPT-5.6-terra and 0.4M / 0.6M for Gemini-3.8-flash on the second day (`results/api_usage.json`); Gemini usage on the first day was not logged because those processes were interrupted. At catalogue prices this is roughly $65 plus the unlogged Gemini usage. The key's daily limit was reached on the first day and the account's credit ran out on the second.
 - **Outputs**: raw responses in `results/<model>/*.jsonl`, tables in `results/tables/`, figures in `figures/`, API cache in `results/cache/`. `results/tables/report_tables.md` collects every table used here.
-- Commands are in `README.md`.
+- Commands are in `README.md`. Bootstrap CIs and permutation p-values use a seeded generator, but values can differ in the last digit between runs of an analysis script because the tables are computed in sequence from one generator.
 
 ## References
 

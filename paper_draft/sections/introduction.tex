@@ -1,0 +1,39 @@
+\section{Introduction}
+\label{sec:intro}
+
+Much of what we know about the safety behavior of large language models (LLMs) comes from prompts that another LLM wrote.
+Model-written evaluations~\citep{perez2022mwe}, synthetic red-teaming sets, and automated auditors all produce user turns in an LLM's voice, and in multi-agent systems an orchestrator model writes the prompts that worker models answer.
+Human users write differently: their messages are often lower-case, unpunctuated, and terse.
+If a model refuses, flatters, or answers differently because a prompt \emph{reads} LLM-written, then numbers measured on synthetic prompts do not describe what human users will see.
+
+There are good reasons to expect such an effect.
+Models can tell evaluation transcripts from deployment transcripts, and cite ``synthetic'' and ``formal'' inputs as cues~\citep{needham2025eval}.
+Steering an internal test-awareness direction changes harmful compliance~\citep{abdelnabi2025hawthorne,nguyen2025probing}.
+Machine-written text is linearly separable from human text in LLM activations~\citep{chen2025repreguard,quaremba2026linear}.
+And LLM judges prefer LLM-written content~\citep{laurito2025aiai,xu2025hiring}.
+Yet no prior work isolates the \emph{authorship style of the prompt} with content held fixed, measures several safety behaviors of the responding model, and tests causally whether an internal ``this was written by an LLM'' representation drives any change.
+The difficulty is that an LLM rewrite of a human prompt is usually also longer, clearer, and more polite, and often adds content; each of these alone can move refusal and sycophancy~\citep{sclar2023sensitivity,yin2024respect,chalkidis2026templated}.
+
+{\bf Our main question is: with the content of a request held fixed, does phrasing the user prompt in LLM style rather than human style change refusal, sycophancy, or accuracy, and if so, is the change driven by an internal authorship representation rather than by length, clarity, or politeness?}
+
+We answer it with three components (see \tabref{tab:design} for the stimulus design).
+First, we build a content-audited $2\times2$ stimulus set: two rewriter models from different providers paraphrase each of 700 benchmark seeds and 300 real \wildchat prompts into human style and LLM style, each at natural and at matched length, so that ``was paraphrased'' is constant and only style and length vary.
+Second, we measure four outcomes in five responders (\llama, \qwen, \gpt, \claude, \gemini), with a manipulation check that each responder perceives the style difference.
+Third, in the two open models we extract an authorship direction that is balanced over length by construction and steer it on fixed text, with norm-matched random directions, a length direction, an evaluation-awareness direction, and a refusal direction as baselines and positive control.
+
+The answer is a null that we can interpret.
+The manipulation works: the API responders rate LLM-style prompts as more AI-written (AUROC 0.70--0.95, including length-matched cells), and a linear probe separates the styles at AUROC $\approx0.99$ in early layers of both open models.
+Yet the style effect on all four outcomes is within about $\pm3$\pp for every model, and none of the 20 primary contrasts survives Holm correction.
+Steering the authorship direction turns the model's own output lower-case at large doses, so the direction is causally a style direction, but at the natural human$\rightarrow$LLM dose it moves a refusal-token readout by at most about 1\pp per unit, inside the range of 32 random directions at all six model--layer combinations; a refusal direction moves the same readout by 2--7\pp per unit in five of six.
+Opinion sycophancy is the one outcome where the steering evidence is mixed.
+In contrast, a naive comparison shows clear effects: an uncontrolled LLM rewrite lowers refusal by 4--11\pp in all five models, while the content-controlled contrasts on the same seeds are near zero.
+
+In summary, our contributions are:
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item We build a content-audited $2\times2$ (style $\times$ length) rewrite design over refusal, sycophancy, and accuracy items, with a perception check, an explicit-label arm, and an uncontrolled-rewrite arm.
+    \item We show that, once content is controlled, LLM style does not detectably change four safety-relevant outcomes in five models (per-model CIs of $\pm2$--$4$\pp), while it does change the form of the answer: four of five models answer LLM-style prompts with 5--15 fewer words.
+    \item We identify a linear authorship direction in two open models that is independent of length, transfers across rewriters, and is nearly orthogonal to an evaluation-awareness direction where it is best encoded; steering it at natural doses changes refusal no more than random directions.
+    \item We demonstrate that naive ``LLM-written vs.\ human-written'' comparisons attribute a content effect to authorship: the 4--11\pp drop in refusal comes from added framing, softened wording, and explicit instructions.
+\end{itemize}
+
+\Secref{sec:related} positions our work, \secref{sec:method} describes stimuli, responders, and the internal analysis, \secref{sec:results} reports results, and \secref{sec:discussion} discusses implications and limitations.

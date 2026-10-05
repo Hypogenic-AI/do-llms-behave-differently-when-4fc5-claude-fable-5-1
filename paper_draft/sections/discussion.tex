@@ -1,0 +1,40 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\para{What the evidence supports.}
+Our question has two parts.
+Do safety behaviors change when the same request reads LLM-written?
+Not detectably: effects are within $\pm3$\pp per model with CIs of roughly $\pm2$--$4$\pp, and $\pm1$--$2$\pp pooled.
+Is any change driven by the internal authorship representation?
+The representation exists, is strong, is length-independent, and at large doses causally changes the register of the model's own output in both open models.
+Moving it by the natural amount on fixed text changes refusal no more than random directions do and leaves factual sycophancy and accuracy within noise.
+Opinion sycophancy is the one outcome where the evidence is mixed: a small effect (about 2\pp per natural unit or less) is neither established nor excluded.
+
+\para{Why naive comparisons mislead.}
+The uncontrolled rewrite arm reproduces the kind of result that would be reported as ``models comply more with LLM-written prompts'' (refusal $-4$ to $-11$\pp).
+The $2\times2$ design shows that this comes from added framing, softened wording, and explicit instructions.
+For evaluation practice, the relevant control is the content fidelity of synthetic prompts, not their voice.
+
+\para{Relation to prior work.}
+\citet{needham2025eval} list synthetic-looking prompts as one cue for evaluation detection.
+Consistent with that, LLM style raises both open models' projection on an evaluation-awareness direction and their verbal test judgment.
+\citet{abdelnabi2025hawthorne} report that steering test awareness changes compliance; here the authorship direction, which is nearly orthogonal to the evaluation direction where it is best encoded, does not.
+The two are distinct variables in these models.
+Our finding that surface features alone reach AUROC 0.994 echoes the format-sensitivity argument of \citet{devbunova2026format}, and the dissociation between what \llama and \qwen encode and what they can report matches \citet{heidari2026evalaware}.
+
+\para{Surprises.}
+The human-style rewrites read as more human than real \wildchat prompts, on both the API raters and the probe.
+A local LLM judge validated at 96\% agreement on one model's outputs dropped to 85--88\% on other models' outputs and under-called refusals, so judge validation did not transfer across responders (\secref{sec:app_scoring}).
+A provider-side filter on one API responded to prompt style even though the model did not.
+
+\para{Limitations.}
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item \emph{Human style is imitated.} For benchmark items the human-style arm is written by an LLM imitating \wildchat messages; the truly human \wildchat originals serve the probe and manipulation check, not the behavior test.
+    \item \emph{The LLM-style arm is constrained.} Under strict content rules the LLM rewrites are short and plain. Structured, multi-paragraph prompts of the kind orchestrators write cannot be content-matched to a one-line human request, and the \Lfree arm shows those do differ in effect. The null applies to voice, not to everything that distinguishes real LLM-written prompts.
+    \item \emph{Scope.} We test single-turn, short prompts and three behavior families in five models; we do not cover multi-turn, agentic, or tool-use settings, or outcomes such as deception. The two open models have 7--8B parameters; larger models, which verbalize authorship better, may differ.
+    \item \emph{Precision and floors.} Per-model CIs are $\pm2$--$4$\pp, so effects below about 2\pp would be missed; the three small leads (pooled factual sycophancy, \gemini refusal, \qwen opinion sycophancy) are in that range. Factual sycophancy was at floor for the API models.
+    \item \emph{Selective attrition.} Rewriters refused 26--29\% of \jbb harmful seeds; the retained harmful items are the milder ones.
+    \item \emph{Mixed scoring of steering outputs.} All behavior and \Lfree results use the API judge. Because API access ran out, \llama steering outputs are scored by rules (95--98\% agreement with the API judge) and about half of \qwen's by a recalibrated local judge (86--98\% at doses up to $\pm4$). The logit readouts in \tabref{tab:natural} need no judge.
+    \item \emph{Coarse steering baselines.} Eight or 32 random directions give minimum empirical $p$-values of 0.11 and 0.03, and we apply no correction across layers, outcomes, and models. The natural-dose run covers refusal only through a first-token proxy. The refusal direction contrasts benchmark-written harmful prompts with casual \wildchat prompts and is therefore style-confounded, and the evaluation-awareness direction has moderate reliability (split-half cosine 0.41--0.76).
+    \item \emph{API responders} are single samples at default temperature, and provider filters removed some responses.
+\end{itemize}

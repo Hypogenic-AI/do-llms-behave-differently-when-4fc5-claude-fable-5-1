@@ -1,0 +1,26 @@
+\section{Related Work}
+\label{sec:related}
+
+\para{Evaluation awareness.}
+Models distinguish evaluation from deployment transcripts at AUC up to 0.83, and their explanations cite synthetic inputs and formal structure as cues~\citep{needham2025eval}; related work measures this ability with dedicated benchmarks~\citep{laine2024sad} and shows that behavior can depend on believed monitoring~\citep{greenblatt2024alignment}.
+The corresponding internal state can be probed and steered.
+\citet{abdelnabi2025hawthorne} show that steering a test-awareness direction changes harmful tool-call execution, with a sign that differs by model, and \citet{nguyen2025probing} extract mean-difference probes with length and special-character baselines.
+\citet{heidari2026evalaware} find that probe score and verbalized awareness are barely coupled, and \citet{hua2025steering} and \citet{chaudhary2025scales} study steering and scaling.
+\citet{devbunova2026format} gives the strongest counter-position: standard evaluation-awareness probes track benchmark format, not context.
+\citet{xiong2025pre} rewrite prompts to be ``deployment-like'' and observe behavior changes, but the rewrite confounds style, length, and LLM authorship.
+Unlike these works, we manipulate the authorship style of the user prompt, hold content fixed, and relate the authorship direction to the evaluation-awareness direction.
+
+\para{Internal representations of machine-written text.}
+LLM-written and human-written passages are linearly separable in hidden states~\citep{chen2025repreguard,quaremba2026linear}, and models hold steerable representations of self-authorship~\citep{ackerman2024inspection} and of user attributes~\citep{chen2024dashboard}, although self-recognition results conflict~\citep{panickssery2024self,bai2025know,stamand2026self}.
+These studies use passages rather than chat-templated user turns, do not match length, and stop at classification.
+We build the direction on user prompts, balance it over length by construction, and test it causally with steering on fixed text.
+
+\para{Behavioral effects of LLM-written content.}
+LLM choosers prefer LLM-written product descriptions and papers~\citep{laurito2025aiai}, and LLM screeners prefer LLM-written resume summaries even after quality and style controls~\citep{xu2025hiring}.
+\citet{chalkidis2026templated} shows that prompt construction changes measured political stance and traces the gap to presuppositions that the construction method adds, a content leak.
+These works study preference among items, not safety behavior of the responder, and none separates voice from content.
+Our uncontrolled-rewrite arm reproduces a content leak of the kind \citet{chalkidis2026templated} describes, and our $2\times2$ design removes it.
+
+\para{Surface-feature sensitivity.}
+Formatting~\citep{sclar2023sensitivity}, politeness~\citep{yin2024respect}, emotional tone~\citep{patel2026emotional}, paraphrase~\citep{plaza2025persona}, and social cues about the user~\citep{huang2026syps,cheng2026verbalizing} all move accuracy, refusal, or sycophancy.
+This literature motivates our controls: both style arms are paraphrases by the same model, length is crossed with style, and an audit model checks every rewrite for content fidelity.

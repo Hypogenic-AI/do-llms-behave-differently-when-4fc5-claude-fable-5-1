@@ -7,15 +7,11 @@ import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 sys.path.insert(0, str(Path(__file__).parent))
 from stats_util import *
-from string_judge import label as string_label
 T = RES / "tables"; F = ROOT / "figures"
 models = [m for m in LOCAL + API if (RES / m / "free_judged.jsonl").exists() and (RES / m / "behaviour_judged.jsonl").exists()]
 rows = []
 for m in models:
     f = pd.read_json(RES / m / "free_judged.jsonl", lines=True)
-    if m in LOCAL:  # same scorer on both arms: the rule-based scorer (the free arm had no API judge)
-        g_ = f.task.isin(["refusal", "accuracy", "syco_fact"])
-        f.loc[g_, "label"] = [string_label(t, s, r) for t, s, r in zip(f[g_].task, f[g_].sid, f[g_].response)]
     f = f[~f.get("label", pd.Series(index=f.index, dtype=object)).isin(["EMPTY", "UNPARSED"])]
     parts = []
     for task, d in f.groupby("task"):
@@ -27,7 +23,7 @@ for m in models:
             d["y"] = 1 / (1 + np.exp(-d.syco_logit)) if "syco_logit" in d and d.syco_logit.notna().any() else d.syco_match
             d["outcome"] = "syco_opinion"; parts.append(d)
     f = pd.concat(parts)[["outcome", "sid", "rewriter", "y"]].rename(columns={"y": "L_free"})
-    b = load_behaviour(m, string_scorer=(m in LOCAL))
+    b = load_behaviour(m)  # both arms scored by the API judge
     for oc in ["refusal", "syco_fact", "syco_opinion", "accuracy"]:
         w = cells(b[b.outcome == oc]).reset_index().merge(f[f.outcome == oc], on=["sid", "rewriter"]).dropna(subset=["L_free"]).set_index(["sid", "rewriter"])
         c = pd.DataFrame({"naive: L_free - H_s": w.L_free - w.H_s, "controlled natural: L_l - H_s": w.L_l - w.H_s,

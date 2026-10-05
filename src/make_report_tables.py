@@ -44,4 +44,14 @@ for k in LOCAL:
         e = pd.read_csv(T / f"steer_effects_{k}.csv"); e = e[(e.direction == "auth")]
         e["v"] = e.apply(lambda r: f"{r.delta:+.3f} [{r.lo:+.3f},{r.hi:+.3f}]", axis=1)
         out += [f"## Steering along authorship direction, change vs unsteered: {NAMES[k]}", md(e.pivot(index=["layer", "alpha"], columns="outcome", values="v").reset_index())]
+sl = pd.read_csv(T / "steer_logit_slopes.csv"); sl = sl[sl.scale == "prob"].copy(); sl["model"] = sl.model.map(NAMES)
+for c_ in ["slope", "lo", "hi", "rand_abs_mean", "rand_abs_max"]: sl[c_] = 100 * sl[c_]
+out += ["## Natural-dose steering (alpha = +/-1, +/-2), slope in pp per natural unit, vs 32 random directions (logit readouts)",
+        md(sl[["model", "layer", "outcome", "direction", "slope", "lo", "hi", "rand_abs_mean", "rand_abs_max", "p_emp"]].round(2)), md(pd.read_csv(T / "steer_logit_validity.csv").round(3))]
+out += ["## Scorer agreement: API judge vs rule-based scorer on behaviour outputs", md(pd.read_csv(T / "scorer_agreement.csv").round(3)),
+        "## Primary style contrast under both scorers", md(pd.read_csv(T / "scorer_sensitivity.csv").round(4)),
+        "## Calibrated local judge vs API judge on held-out Qwen steering outputs", md(pd.read_csv(T / "local_judge_calibration_qwen.csv").round(3))]
+st = pd.read_csv(T / "steer_style_readout.csv"); st = st[st.kind.isin(["auth", "iso", "cov"])]
+out += ["## Output register under steering: share of sentence starts in lower case (mean; random = max over 8 directions)",
+        md(st.assign(kind=st.kind.replace({"iso": "random", "cov": "random"})).groupby(["model", "layer", "kind", "alpha"]).lower_sent.max().unstack().round(3).reset_index())]
 (T / "report_tables.md").write_text("\n\n".join(out)); print("written", len(out))

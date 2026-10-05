@@ -1,0 +1,9 @@
+Safety evaluations and multi-agent systems routinely feed LLM-written user turns to models.
+If a prompt that merely \emph{reads} LLM-written shifts behavior, evaluation results would not transfer to deployment with human users.
+We test this with a content-audited $2\times2$ design (style $\times$ length, two rewriter models) over refusal, factual sycophancy, opinion sycophancy, and trivia accuracy in five responders: two open models and three API models.
+With content held fixed, the LLM-minus-human style effect is within about $\pm3$ percentage points for every model and outcome, and none of the 20 primary contrasts survives Holm correction (smallest corrected $p=0.068$); pooled over models, the effect on refusal is $-0.6$\pp (95\% CI $-1.9$ to $+0.7$).
+This null holds even though the manipulation works: API responders rate LLM-style prompts as more AI-written (AUROC 0.70--0.95), and both open models carry a linear, length-independent authorship direction that separates the styles at AUROC $\approx0.99$.
+Steering this direction on fixed text changes the register of the model's own output at large doses, but at the natural human-to-LLM dose it moves a refusal readout no more than 32 norm-matched random directions do; the evidence for opinion sycophancy is mixed.
+In contrast, a naive comparison with an uncontrolled LLM rewrite lowers refusal by 4--11\pp in all five models.
+Differences between ``LLM-written'' and ``human-written'' prompts therefore come from what the rewriting model adds, not from how the prompt reads.
+For evaluations built on synthetic prompts, content fidelity, not voice, is what needs checking.

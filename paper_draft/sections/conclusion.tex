@@ -1,0 +1,10 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We asked whether LLMs behave differently when a prompt reads LLM-written.
+Once content is controlled, making a prompt read LLM-written did not detectably change refusal, sycophancy, or accuracy in five models, even though the models perceive the difference and encode it almost perfectly.
+Steering a strong, length-independent authorship direction on fixed text changed output style at large doses, and at natural doses changed refusal no more than random directions; for opinion sycophancy a small effect is neither established nor excluded.
+The differences that appear in uncontrolled comparisons, 4--11\pp in refusal, trace to content that the rewriting model adds.
+For these models and behaviors, evaluations that use LLM-written user turns are not biased by the LLM voice itself by more than a few points, but they can be biased by added content, so content fidelity is what needs checking.
+
+Future work should, in order of value, (1) use human-written paraphrases of benchmark items as the human arm, and natively LLM-written multi-paragraph prompts with content-matched human counterparts; (2) follow up the two sycophancy leads with larger item sets, the user's hedge held verbatim across styles, and more random directions; (3) extend to multi-turn and agentic settings, where an orchestrator's voice persists across turns; (4) test whether provider moderation layers respond to casual register; and (5) repeat the steering analysis in larger open models.
